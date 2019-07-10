@@ -1,5 +1,7 @@
 # Hotel Booling DDD
 
+[![Build Status](https://travis-ci.org/FongX777/hotel-booking-ddd.svg?branch=master)](https://travis-ci.org/FongX777/hotel-booking-ddd)
+
 A hotel room booking app which is implemented under the principle of Domain-Driven Design.
 Also we used some tools such as user story mapping, specification by example, and event storming to help us model the domain.
 
