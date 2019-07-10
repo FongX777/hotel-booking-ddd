@@ -28,3 +28,8 @@ Development Framework and tools:
 - TypeScript: a typed superset of JavaScript that compiles to plain JavaScript
 - Jest: testing framework
 - CircleCI
+- ESlint
+
+## Reference
+
+- eslint setup: https://mhartington.io/post/typescript-eslint-setup/
