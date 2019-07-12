@@ -50,7 +50,8 @@ export class Entity<Props extends EntityLikeProps<Identifier<any>>>
   props: Props;
 
   constructor(props: Props) {
-    this.props = Object.freeze(props);
+    // this.props = Object.freeze(props);
+    this.props = props;
   }
 
   /*
