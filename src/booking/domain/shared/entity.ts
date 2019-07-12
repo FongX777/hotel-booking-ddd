@@ -46,7 +46,8 @@ export const isEntity = (v: any): v is Entity<any> => {
  */
 export class Entity<Props extends EntityLikeProps<Identifier<any>>>
   implements EntityLike<Props> {
-  props: Readonly<Props>;
+  // props: Readonly<Props>;
+  props: Props;
 
   constructor(props: Props) {
     this.props = Object.freeze(props);
