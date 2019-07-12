@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "testWithCoverage": "jest --coverage",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
     "start": "tsc && node ./build/app.js",
     "tsc": "tsc",
     "dev": "ts-node-dev --respawn --transpileOnly ./app/app.ts",
