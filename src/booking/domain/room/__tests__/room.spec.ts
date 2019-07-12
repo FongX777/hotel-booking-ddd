@@ -19,7 +19,10 @@ describe('Room.create', function() {
       ]
     };
     const result = Room.create(params);
-    expect(result.props).toEqual(params);
+    expect(result.props).toEqual({
+      ...params,
+      active: false
+    });
   });
 
   it('success - test default', function() {
@@ -37,6 +40,7 @@ describe('Room.create', function() {
       description: '',
       facilities: [],
       coverImage: null,
+      active: false,
       images: []
     });
   });
