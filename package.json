@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo pass",
+    "test": "jest",
+    "testWithCoverage": "jest --coverage",
     "start": "tsc && node ./build/app.js",
     "tsc": "tsc",
     "dev": "ts-node-dev --respawn --transpileOnly ./app/app.ts",
