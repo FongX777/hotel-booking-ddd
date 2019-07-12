@@ -13,6 +13,7 @@ export interface RoomProps {
   price: number;
   coverImage: string | null;
   images: string[];
+  active: boolean;
 }
 
 export class Room extends Entity<RoomProps> {
@@ -42,7 +43,8 @@ export class Room extends Entity<RoomProps> {
       size: params.size,
       price: params.price,
       coverImage: params.coverImage || null,
-      images: params.images || []
+      images: params.images || [],
+      active: false
     };
     return new Room(props);
   }
