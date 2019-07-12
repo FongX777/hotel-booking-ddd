@@ -30,6 +30,40 @@ export class Room extends Entity<RoomProps> {
     }
   }
 
+  get id(): RoomId {
+    return this.props.id;
+  }
+  get roomNo() {
+    return this.props.roomNo;
+  }
+  get name() {
+    return this.props.name;
+  }
+  get description() {
+    return this.props.description;
+  }
+  get numberOfOccupants() {
+    return this.props.numberOfOccupants;
+  }
+  get facilities() {
+    return this.props.facilities;
+  }
+  get size() {
+    return this.props.size;
+  }
+  get price() {
+    return this.props.price;
+  }
+  get coverImage() {
+    return this.props.coverImage;
+  }
+  get images() {
+    return this.props.images;
+  }
+  get active() {
+    return this.props.active;
+  }
+
   updateName(name: string) {
     this.props.name = name;
   }
@@ -67,17 +101,18 @@ export class Room extends Entity<RoomProps> {
   }
 
   addFacilities(facilities: string[]) {
-    this.props.facilities.push(...facilities);
+    const newFacilities = new Set(this.props.facilities.concat(facilities));
+    this.props.facilities = [...newFacilities];
   }
 
   removeFacilities(facilities: string[]) {
     const newFacilities: string[] = [];
-    this.props.facilities.forEach(facility => {
-      if (!facilities.includes(facility)) {
-        newFacilities.push(facility);
+    facilities.forEach(facility => {
+      const idx = this.props.facilities.findIndex(f => f === facility);
+      if (idx !== -1) {
+        this.props.facilities.splice(idx, 1);
       }
     });
-    this.props.facilities = newFacilities;
   }
 
   addImages(images: string[]) {
@@ -91,6 +126,10 @@ export class Room extends Entity<RoomProps> {
       }
     });
     this.props.images = newImages;
+  }
+
+  static build(params: RoomProps) {
+    return new Room(params);
   }
 
   static create(params: {
