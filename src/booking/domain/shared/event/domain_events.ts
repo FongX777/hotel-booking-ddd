@@ -1,5 +1,5 @@
 import { IDomainEvent } from './idomain_event';
-import { AggregateRoot } from '../aggregate_root';
+import { AggregateRoot } from '../aggregate-root';
 import { Identifier } from '../identifier';
 
 export class DomainEvents {
