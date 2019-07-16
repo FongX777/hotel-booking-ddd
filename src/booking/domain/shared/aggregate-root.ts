@@ -3,7 +3,7 @@ import { Identifier } from './identifier';
 
 import { IDomainEvent } from './event/idomain_event';
 import { DomainEvents } from './event/domain_events';
-import { EntityLikeProps } from './entity_like';
+import { EntityLikeProps } from './entity-like';
 
 export class AggregateRoot<
   Prop extends EntityLikeProps<Identifier<any>>
