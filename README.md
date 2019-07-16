@@ -30,6 +30,21 @@ Development Framework and tools:
 - CircleCI
 - ESlint
 
+## Methodology
+
+### Entity Pattern Rules
+
+1. all private properties
+2. public getters & private setters
+3. behavior-driven
+
+(o) a.updateInfo(name, ..,,.., ...);
+(x) a.setXXX();
+
+Why used `props` ?
+
+it is just a simple way to avoid tons of `this` assignment
+
 ## Reference
 
 - eslint setup: https://mhartington.io/post/typescript-eslint-setup/

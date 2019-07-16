@@ -64,34 +64,6 @@ export class Room extends Entity<RoomProps> {
     return this.props.active;
   }
 
-  updateName(name: string) {
-    this.props.name = name;
-  }
-
-  updateRoomNo(roomNo: string) {
-    this.props.roomNo = roomNo;
-  }
-
-  updateDescription(description: string) {
-    this.props.description = description;
-  }
-
-  updateNumberOfOccupants(numberOfOccupants: number) {
-    this.props.numberOfOccupants = numberOfOccupants;
-  }
-
-  updateSize(size: number) {
-    this.props.size = size;
-  }
-
-  updatePrice(price: number) {
-    this.props.price = price;
-  }
-
-  updateCoverImage(image: string) {
-    this.props.coverImage = image;
-  }
-
   activate() {
     this.props.active = true;
   }
