@@ -7,10 +7,10 @@
     "test": "jest",
     "test:watch": "jest --watch",
     "test:coverage": "jest --coverage",
-    "start": "tsc && node ./build/app.js",
+    "start": "tsc && node ./build/src/booking/web/index.js",
     "tsc": "tsc",
-    "dev": "ts-node-dev --respawn --transpileOnly ./app/app.ts",
-    "prod": "tsc && node ./build/app.js"
+    "dev": "ts-node-dev --respawn --transpileOnly ./src/booking/web/index.ts",
+    "prod": "tsc && node ./build/src/booking/web/index.js"
   },
   "keywords": [],
   "author": "",
@@ -32,6 +32,7 @@
     "@types/express": "^4.17.0",
     "@types/uuid": "^3.4.5",
     "bcrypt": "^3.0.6",
+    "body-parser": "^1.19.0",
     "express": "^4.17.1"
   }
 }
