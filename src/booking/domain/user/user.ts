@@ -32,6 +32,22 @@ export class User extends Entity<UserProps> {
     return this.props.mobilePhone;
   }
 
+  set id(id: UserId) {
+    this.props.id = id;
+  }
+  set name(name: string) {
+    this.name = name;
+  }
+  set email(email: string) {
+    this.email = email;
+  }
+  set password(password: string) {
+    this.props.password = password;
+  }
+  set mobilePhone(mobilePhone: string) {
+    this.props.mobilePhone = mobilePhone;
+  }
+
   static register({
     id,
     name,
