@@ -95,7 +95,6 @@ describe('Room create then update', function() {
 
     result.addFacilities(facilitiesToBeAdded);
     expect(result.facilities).toEqual(['Wifi', 'Bath', 'KTV', 'Parking']);
-    console.log(facilitiesToBeAdded);
     result.removeFacilities(facilitiesToBeAdded);
     expect(result.facilities).toEqual(['Wifi']);
   });

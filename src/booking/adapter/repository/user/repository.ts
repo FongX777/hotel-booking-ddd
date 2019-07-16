@@ -1,4 +1,4 @@
-import { IUserRepository } from '../../../usecase/user/i_repository';
+import IUserRepository from '../../../usecase/user/i-repository';
 import { User, UserId } from '../../../domain/user/user';
 import uuidV4 from 'uuid/v4';
 
