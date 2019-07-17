@@ -2,7 +2,7 @@ import IUserRepository from '../../../usecase/user/i-repository';
 import { User, UserId } from '../../../domain/user/user';
 import uuidV4 from 'uuid/v4';
 
-export class UserRepositoryInMem implements IUserRepository {
+export class MemeryUserRepository implements IUserRepository {
   private users: User[];
   constructor() {
     this.users = [];
