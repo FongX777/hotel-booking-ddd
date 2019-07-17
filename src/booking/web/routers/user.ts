@@ -7,7 +7,7 @@ import {
   RegisterUserOutputProps,
   RegisterUserInput
 } from '../../usecase/user';
-import { MemeryUserRepository } from '../repository/user/repository';
+import { MemeryUserRepository } from '../../adapter/repository/user';
 const router = Router();
 
 router.get('/:id', function(req, res) {

@@ -1,6 +1,6 @@
 // lib/app.ts
 import express = require('express');
-import userRouter from '../adapter/routers/user';
+import userRouter from './routers/user';
 import bodyParser from 'body-parser';
 
 // Create a new express application instance
