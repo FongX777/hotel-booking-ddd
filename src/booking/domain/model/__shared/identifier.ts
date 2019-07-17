@@ -23,7 +23,7 @@ export class Identifier<T> {
     return id.toValue() === this.value;
   }
 
-  toString() {
+  public toString() {
     const constructorName = this.constructor.name;
     return `${constructorName}(${String(this.value)})`;
   }

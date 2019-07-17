@@ -45,6 +45,24 @@ Why used `props` ?
 
 it is just a simple way to avoid tons of `this` assignment
 
+## Design Notes
+
+At first, I put all external npm modules in `src/booking/infrastructure/`, and they all
+implemnt interfaces from `src/booking/usecase/`.
+
+for example, if I want to use `bcrypt` packages, first I would declare an interface:
+`src/booking/usecase/infrastructure/i-bcrypt`, then create `src/booking/infrastructure/bcrypt` to
+implemnt the interface.
+
+After that, I can injection the bcrypt dependency into usecase constructor to avoid violate the
+direction of dependency; however, it doesn't worth taking so much time for a single utiliy.
+
+The advantage is obvious, but here are disadvantages:
+
+1. Hard to used by other bounded context.
+2. Too much work for a simple utility.
+3. Make constructor too complicated to use (more parameters)
+
 ## Reference
 
 - eslint setup: https://mhartington.io/post/typescript-eslint-setup/

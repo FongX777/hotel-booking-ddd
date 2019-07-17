@@ -1,63 +1,95 @@
-import { User, UserId } from '../../domain/user/user';
+import { User, UserId } from '../../domain/model/user/user';
 import IUserRepository from './i-repository';
-import IBcrypt from '../infrastructure/i-bcrypt';
+import { encrypt } from '../__utils/bcrypt';
 
-export class RegisterUserUsecase {
+export class RegisterUser {
   private userRepo: IUserRepository;
-  private bcrypt: IBcrypt;
+  private _encrypt: (data: string) => string;
 
-  constructor(userRepo: IUserRepository, bcrypt: IBcrypt) {
+  constructor(userRepo: IUserRepository) {
     this.userRepo = userRepo;
-    this.bcrypt = bcrypt;
+    this._encrypt = encrypt;
   }
 
-  execute(input: RegisterUserUsecaseInput): RegisterUserUsecaseOutput {
-    const id: UserId = this.userRepo.newId();
-    const { name, email, password, mobilePhone } = input;
+  /** for testing usage */
+  stubEncrypt(_encrypt: (data: string) => string) {
+    this._encrypt = _encrypt;
+  }
 
-    const hashedPassword = this.bcrypt.encrypt(password);
+  execute(input: RegisterUserInput): RegisterUserUsecaseOutput {
+    try {
+      const id: UserId = this.userRepo.nextId();
+      const { name, email, password, mobilePhone } = input;
 
-    const user = User.register({
-      id,
-      name,
-      email,
-      password: hashedPassword,
-      mobilePhone
-    });
-    this.userRepo.save(user);
+      const hashedPassword = this._encrypt(password);
 
-    const output = new RegisterUserUsecaseOutput(user);
-    return output;
+      const user = User.register({
+        id,
+        name,
+        email,
+        password: hashedPassword,
+        mobilePhone
+      });
+      this.userRepo.save(user);
+      const output = RegisterUserUsecaseOutput.succeed(user);
+      return output;
+    } catch (error) {
+      const output = RegisterUserUsecaseOutput.fail(error.message);
+      return output;
+    }
   }
 }
 
-export class RegisterUserUsecaseInput {
+interface RegisterUserInputProps {
+  name: string;
+  email: string;
+  password: string;
+  mobilePhone?: string;
+}
+
+export class RegisterUserInput implements RegisterUserInputProps {
   name: string;
   email: string;
   password: string;
   mobilePhone?: string;
 
-  constructor({
-    name,
-    email,
-    password,
-    mobilePhone
-  }: {
-    name: string;
-    email: string;
-    password: string;
-    mobilePhone?: string;
-  }) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-    this.mobilePhone = mobilePhone;
+  constructor(props: RegisterUserInputProps) {
+    this.name = props.name;
+    this.email = props.email;
+    this.password = props.password;
+    this.mobilePhone = props.mobilePhone;
   }
 }
 
-export class RegisterUserUsecaseOutput {
-  user: User;
-  constructor(user: User) {
-    this.user = user;
+export interface RegisterUserOutputProps {
+  user: User | null;
+  success: boolean;
+  message: string;
+}
+
+export class RegisterUserUsecaseOutput implements RegisterUserOutputProps {
+  user: User | null;
+  success: boolean;
+  message: string;
+  constructor(props: RegisterUserUsecaseOutput) {
+    this.user = props.user;
+    this.success = props.success;
+    this.message = props.message;
+  }
+
+  static succeed(user: User): RegisterUserUsecaseOutput {
+    return new RegisterUserUsecaseOutput({
+      user,
+      success: true,
+      message: 'ok'
+    });
+  }
+
+  static fail(message: string): RegisterUserUsecaseOutput {
+    return new RegisterUserUsecaseOutput({
+      user: null,
+      success: false,
+      message
+    });
   }
 }
