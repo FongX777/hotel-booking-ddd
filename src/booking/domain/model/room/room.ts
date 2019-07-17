@@ -1,4 +1,4 @@
-import { Entity, Identifier } from '../shared';
+import { Entity, Identifier } from '../../shared';
 
 export class RoomId extends Identifier<string> {}
 
