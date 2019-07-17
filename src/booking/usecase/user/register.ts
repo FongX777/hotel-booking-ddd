@@ -1,4 +1,4 @@
-import { User, UserId } from '../../domain/user/user';
+import { User, UserId } from '../../domain/model/user/user';
 import IUserRepository from './i-repository';
 import { encrypt } from '../__utils/bcrypt';
 

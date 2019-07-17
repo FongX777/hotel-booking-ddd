@@ -1,5 +1,5 @@
 import IUserRepository from '../../../usecase/user/i-repository';
-import { User, UserId } from '../../../domain/user/user';
+import { User, UserId } from '../../../domain/model/user/user';
 import { generateV4 } from '../__utils/uuid';
 
 export class MemeryUserRepository implements IUserRepository {

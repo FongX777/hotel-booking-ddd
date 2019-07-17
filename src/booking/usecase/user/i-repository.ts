@@ -1,4 +1,4 @@
-import { User, UserId } from '../../domain/user/user';
+import { User, UserId } from '../../domain/model/user/user';
 export default interface IUserRepository {
   nextId: () => UserId;
   findById: (id: UserId) => User | undefined;
