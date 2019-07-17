@@ -11,13 +11,14 @@ export class RegisterUserUsecase {
     this._encrypt = encrypt;
   }
 
+  /** for testing usage */
   stubEncrypt(_encrypt: (data: string) => string) {
     this._encrypt = _encrypt;
   }
 
   execute(input: RegisterUserUsecaseInput): RegisterUserUsecaseOutput {
     try {
-      const id: UserId = this.userRepo.newId();
+      const id: UserId = this.userRepo.nextId();
       const { name, email, password, mobilePhone } = input;
 
       const hashedPassword = this._encrypt(password);

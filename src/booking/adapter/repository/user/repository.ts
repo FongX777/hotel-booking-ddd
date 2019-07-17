@@ -1,6 +1,6 @@
 import IUserRepository from '../../../usecase/user/i-repository';
 import { User, UserId } from '../../../domain/user/user';
-import uuidV4 from 'uuid/v4';
+import { generateV4 } from '../__utils/uuid';
 
 export class MemeryUserRepository implements IUserRepository {
   private users: User[];
@@ -8,8 +8,16 @@ export class MemeryUserRepository implements IUserRepository {
     this.users = [];
   }
 
-  newId(): UserId {
-    return new UserId(uuidV4());
+  nextId(): UserId {
+    const date: Date = new Date();
+    const dateStr: string = [
+      date.getFullYear(),
+      date.getMonth() + 1,
+      date.getDate()
+    ].join('');
+    const newUuid: string = generateV4().substr(0, 20);
+    const id: string = `booking-user-${dateStr}-${newUuid}`;
+    return new UserId(id);
   }
 
   findById(id: UserId): User | undefined {
