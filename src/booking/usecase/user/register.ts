@@ -2,7 +2,7 @@ import { User, UserId } from '../../domain/model/user/user';
 import IUserRepository from './i-repository';
 import { encrypt } from '../__utils/bcrypt';
 
-export class RegisterUserUsecase {
+export class RegisterUser {
   private userRepo: IUserRepository;
   private _encrypt: (data: string) => string;
 
@@ -16,7 +16,7 @@ export class RegisterUserUsecase {
     this._encrypt = _encrypt;
   }
 
-  execute(input: RegisterUserUsecaseInput): RegisterUserUsecaseOutput {
+  execute(input: RegisterUserInput): RegisterUserUsecaseOutput {
     try {
       const id: UserId = this.userRepo.nextId();
       const { name, email, password, mobilePhone } = input;
@@ -40,20 +40,20 @@ export class RegisterUserUsecase {
   }
 }
 
-interface RegisterUserUsecaseInputProps {
+interface RegisterUserInputProps {
   name: string;
   email: string;
   password: string;
   mobilePhone?: string;
 }
 
-export class RegisterUserUsecaseInput implements RegisterUserUsecaseInputProps {
+export class RegisterUserInput implements RegisterUserInputProps {
   name: string;
   email: string;
   password: string;
   mobilePhone?: string;
 
-  constructor(props: RegisterUserUsecaseInputProps) {
+  constructor(props: RegisterUserInputProps) {
     this.name = props.name;
     this.email = props.email;
     this.password = props.password;
@@ -61,14 +61,13 @@ export class RegisterUserUsecaseInput implements RegisterUserUsecaseInputProps {
   }
 }
 
-export interface RegisterUserUsecaseOutputProps {
+export interface RegisterUserOutputProps {
   user: User | null;
   success: boolean;
   message: string;
 }
 
-export class RegisterUserUsecaseOutput
-  implements RegisterUserUsecaseOutputProps {
+export class RegisterUserUsecaseOutput implements RegisterUserOutputProps {
   user: User | null;
   success: boolean;
   message: string;

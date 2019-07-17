@@ -2,21 +2,21 @@ import { User } from '../../../domain/model/user/user';
 import IUserRepository from '../i-repository';
 import { MemeryUserRepository } from '../../../adapter/repository/user/repository';
 import {
-  RegisterUserUsecase,
-  RegisterUserUsecaseInput,
+  RegisterUser,
+  RegisterUserInput,
   RegisterUserUsecaseOutput
 } from '../register';
 
 describe('Register a User', function() {
   it('register a user', function() {
     const repo: IUserRepository = new MemeryUserRepository();
-    const usecase: RegisterUserUsecase = new RegisterUserUsecase(repo);
+    const usecase: RegisterUser = new RegisterUser(repo);
 
     const name = 'abcd';
     const email = 'abcd@mail.com';
     const password = '123456';
 
-    const input = new RegisterUserUsecaseInput({
+    const input = new RegisterUserInput({
       name,
       email,
       password
