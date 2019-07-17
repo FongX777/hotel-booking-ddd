@@ -3,11 +3,11 @@
  */
 import { Router } from 'express';
 import {
-  RegisterUserUsecase,
-  RegisterUserUsecaseOutputProps,
-  RegisterUserUsecaseInput
+  RegisterUser,
+  RegisterUserOutputProps,
+  RegisterUserInput
 } from '../../usecase/user';
-import { MemeryUserRepository } from '../../adapter/repository/user/repository';
+import { MemeryUserRepository } from '../repository/user/repository';
 const router = Router();
 
 router.get('/:id', function(req, res) {
@@ -17,15 +17,15 @@ router.get('/:id', function(req, res) {
 
 router.post('/register', function(req, res) {
   const { name, email, password, mobilePhone } = req.body;
-  const input = new RegisterUserUsecaseInput({
+  const input = new RegisterUserInput({
     name,
     email,
     password,
     mobilePhone
   });
   const repo = new MemeryUserRepository();
-  const usecase = new RegisterUserUsecase(repo);
-  const output: RegisterUserUsecaseOutputProps = usecase.execute(input);
+  const usecase = new RegisterUser(repo);
+  const output: RegisterUserOutputProps = usecase.execute(input);
 
   if (output.success) {
     res.redirect('/');
