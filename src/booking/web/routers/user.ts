@@ -4,7 +4,7 @@
 import { Router } from 'express';
 import {
   RegisterUserUsecase,
-  RegisterUserUsecaseOutput,
+  RegisterUserUsecaseOutputProps,
   RegisterUserUsecaseInput
 } from '../../usecase/user';
 import { MemeryUserRepository } from '../../adapter/repository/user/repository';
@@ -25,12 +25,12 @@ router.post('/register', function(req, res) {
   });
   const repo = new MemeryUserRepository();
   const usecase = new RegisterUserUsecase(repo);
-  const output = usecase.execute(input);
+  const output: RegisterUserUsecaseOutputProps = usecase.execute(input);
 
-  if (output) {
+  if (output.success) {
     res.redirect('/');
   } else {
-    res.status(500).send('register error');
+    res.status(500).send(`register error: ${output.message}`);
   }
 });
 
