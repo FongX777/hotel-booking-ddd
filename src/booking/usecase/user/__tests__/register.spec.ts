@@ -1,6 +1,6 @@
 import { User } from '../../../domain/model/user/user';
 import IUserRepository from '../i-repository';
-import { MemeryUserRepository } from '../../../adapter/repository/user/repository';
+import { MemeryUserRepository } from '../../../adapter/repository/user';
 import {
   RegisterUser,
   RegisterUserInput,
