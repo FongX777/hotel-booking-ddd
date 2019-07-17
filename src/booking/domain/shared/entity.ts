@@ -1,6 +1,6 @@
 // MIT © 2017 azu
 import { Identifier } from './identifier';
-import { EntityLike, EntityLikeProps } from './entity_like';
+import { EntityLike, EntityLikeProps } from './entity-like';
 
 export const isEntity = (v: any): v is Entity<any> => {
   return v instanceof Entity;
