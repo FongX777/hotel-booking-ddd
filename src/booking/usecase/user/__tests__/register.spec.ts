@@ -1,16 +1,16 @@
+import { User } from '../../../domain/user/user';
 import IUserRepository from '../i-repository';
-import { UserRepositoryInMem } from '../../../adapter/repository/user/repository';
+import { MemeryUserRepository } from '../../../adapter/repository/user/repository';
 import {
   RegisterUserUsecase,
   RegisterUserUsecaseInput,
   RegisterUserUsecaseOutput
 } from '../register';
-import bcrypt from '../../../infrastructure/bcrypt';
 
 describe('Register a User', function() {
   it('register a user', function() {
-    const repo: IUserRepository = new UserRepositoryInMem();
-    const usecase: RegisterUserUsecase = new RegisterUserUsecase(repo, bcrypt);
+    const repo: IUserRepository = new MemeryUserRepository();
+    const usecase: RegisterUserUsecase = new RegisterUserUsecase(repo);
 
     const name = 'abcd';
     const email = 'abcd@mail.com';
@@ -24,10 +24,13 @@ describe('Register a User', function() {
 
     const output: RegisterUserUsecaseOutput = usecase.execute(input);
 
-    expect(output.user.id).not.toBeNull();
-    expect(output.user.password).not.toBeNull();
-    expect(output.user.name).toBe(name);
-    expect(output.user.email).toBe(email);
-    expect(output.user.mobilePhone).toBe('');
+    expect(output.success).toBeTruthy();
+    expect(output.user).not.toBeNull();
+
+    const user = output.user as User;
+    expect(user.password).not.toBeNull();
+    expect(user.name).toBe(name);
+    expect(user.email).toBe(email);
+    expect(user.mobilePhone).toBe('');
   });
 });

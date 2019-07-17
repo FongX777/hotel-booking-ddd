@@ -7,8 +7,7 @@ import {
   RegisterUserUsecaseOutput,
   RegisterUserUsecaseInput
 } from '../../usecase/user';
-import { UserRepositoryInMem } from '../../adapter/repository/user/repository';
-import bcrypt from '../../infrastructure/bcrypt';
+import { MemeryUserRepository } from '../../adapter/repository/user/repository';
 const router = Router();
 
 router.get('/:id', function(req, res) {
@@ -24,8 +23,8 @@ router.post('/register', function(req, res) {
     password,
     mobilePhone
   });
-  const repo = new UserRepositoryInMem();
-  const usecase = new RegisterUserUsecase(repo, bcrypt);
+  const repo = new MemeryUserRepository();
+  const usecase = new RegisterUserUsecase(repo);
   const output = usecase.execute(input);
 
   if (output) {
