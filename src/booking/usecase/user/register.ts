@@ -1,5 +1,5 @@
 import { User, UserId } from '../../domain/model/user/user';
-import IUserRepository from './i-repository';
+import IUserRepository from './repository';
 import { encrypt } from '../__utils/bcrypt';
 
 export class RegisterUser {

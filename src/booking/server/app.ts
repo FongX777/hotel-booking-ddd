@@ -3,7 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 import { createUserRoute } from './routers/user';
-import IUserRepository from '../usecase/user/i-repository';
+import IUserRepository from '../usecase/user/repository';
 
 export interface Config {
   port: number;

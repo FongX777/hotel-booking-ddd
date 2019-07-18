@@ -7,7 +7,7 @@ import {
   RegisterUserOutputProps,
   RegisterUserInput
 } from '../../usecase/user';
-import IUserRepository from '../../usecase/user/i-repository';
+import IUserRepository from '../../usecase/user/repository';
 
 export function createUserRoute(userRepo: IUserRepository): Router {
   const router = Router();
