@@ -22,7 +22,7 @@ export class MemeryUserRepository implements UserRepository {
 
   findById(id: UserId): User | undefined {
     // todo
-    return this.users.find(user => user.id === id);
+    return this.users.find(user => user.id.equals(id));
   }
 
   deleteById(id: UserId): void {

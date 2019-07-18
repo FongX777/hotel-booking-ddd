@@ -17,8 +17,8 @@ export class GetUserUsecase implements GetUserInputPort {
     name: string,
     email: string,
     mobilePhone: string
-  ): ResponseModel {
-    return new ResponseModel(id, name, email, mobilePhone);
+  ): GetUserResp {
+    return new GetUserResp(id, name, email, mobilePhone);
   }
 
   execute(input: RequestModel, output: GetUserOutputPort): void {
@@ -31,7 +31,7 @@ export class GetUserUsecase implements GetUserInputPort {
         output.notFound();
       } else {
         output.onFound(
-          new ResponseModel(
+          new GetUserResp(
             user.id.toString(),
             user.name,
             user.email,
@@ -55,11 +55,11 @@ class RequestModel {
 }
 
 export interface GetUserOutputPort {
-  onFound: (responseModel: ResponseModel) => void;
+  onFound: (respModel: GetUserResp) => void;
   notFound: () => void;
 }
 
-class ResponseModel {
+export class GetUserResp {
   id: string;
   name: string | undefined;
   email: string | undefined;

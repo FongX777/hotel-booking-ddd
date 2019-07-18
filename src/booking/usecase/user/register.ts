@@ -15,11 +15,11 @@ export class RegisterUserUsecase implements RegisterUserInputPort {
     name: string,
     email: string,
     password: string
-  ): RequestModel {
-    return new RequestModel(name, email, password);
+  ): RegisterUserReqModel {
+    return new RegisterUserReqModel(name, email, password);
   }
 
-  execute(input: RequestModel, output: RegisterUserOutputPort): void {
+  execute(input: RegisterUserReqModel, output: RegisterUserOutputPort): void {
     try {
       const id: UserId = this.userRepo.nextId();
       const { name, email, password } = input;
@@ -33,7 +33,9 @@ export class RegisterUserUsecase implements RegisterUserInputPort {
         password: hashedPassword
       });
       this.userRepo.save(user);
-      output.onRegistered(new ResponseModel(user.name, user.email));
+      output.onRegistered(
+        new RegisterUserRespModel(user.id.toValue(), user.name, user.email)
+      );
     } catch (error) {}
   }
 
@@ -44,10 +46,13 @@ export class RegisterUserUsecase implements RegisterUserInputPort {
 }
 
 export interface RegisterUserInputPort {
-  execute(params: RequestModel, outputPort: RegisterUserOutputPort): void;
+  execute(
+    params: RegisterUserReqModel,
+    outputPort: RegisterUserOutputPort
+  ): void;
 }
 
-class RequestModel {
+class RegisterUserReqModel {
   name: string;
   email: string;
   password: string;
@@ -59,14 +64,15 @@ class RequestModel {
 }
 
 export interface RegisterUserOutputPort {
-  responseModel: ResponseModel | undefined;
-  onRegistered: (responseModel: ResponseModel) => void;
+  onRegistered: (responseModel: RegisterUserRespModel) => void;
 }
 
-export class ResponseModel {
-  name: string | undefined;
-  email: string | undefined;
-  constructor(name: string, email: string) {
+export class RegisterUserRespModel {
+  id: string;
+  name: string;
+  email: string;
+  constructor(id: string, name: string, email: string) {
+    this.id = id;
     this.name = name;
     this.email = email;
   }

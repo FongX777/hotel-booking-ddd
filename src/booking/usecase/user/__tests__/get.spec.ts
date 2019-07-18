@@ -1,10 +1,11 @@
-import { RegisterUserUsecase } from '../index';
+import { GetUserUsecase, RegisterUserUsecase } from '../index';
 import { MemeryUserRepository } from '../../../adapter/repository/user';
 import { UserPrensenter } from '../../../adapter/presenter/user';
 
 describe('Register a User', function() {
-  it('register a user', async function() {
-    const repo = new MemeryUserRepository();
+  let id: string;
+  const repo = new MemeryUserRepository();
+  beforeEach(async () => {
     const usecase: RegisterUserUsecase = new RegisterUserUsecase(repo);
     const output = new UserPrensenter();
 
@@ -14,9 +15,21 @@ describe('Register a User', function() {
 
     const input = RegisterUserUsecase.createRequestModel(name, email, password);
     await usecase.execute(input, output);
+    if (output.user) {
+      id = output.user.id as string;
+    }
+  });
+
+  it('register a user', async function() {
+    const usecase = new GetUserUsecase(repo);
+    const output = new UserPrensenter();
+
+    const input = GetUserUsecase.createRequestModel(id);
+
+    await usecase.execute(input, output);
+
+    console.log(output);
 
     expect(output.success).toBeTruthy();
-    expect(output.user).not.toBeUndefined();
-    expect(output.user).toEqual({ name, email });
   });
 });

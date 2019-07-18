@@ -20,6 +20,6 @@ export class UserController {
     );
     const output = new UserPrensenter();
     usecase.execute(requestModel, output);
-    return { success: true };
+    return { success: output.success };
   }
 }
