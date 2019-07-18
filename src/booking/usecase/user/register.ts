@@ -1,25 +1,28 @@
 import { User, UserId } from '../../domain/model/user/user';
-import IUserRepository from './repository';
+import { UserRepository } from './';
 import { encrypt } from '../__utils/bcrypt';
 
-export class RegisterUser {
-  private userRepo: IUserRepository;
+export class RegisterUserUsecase implements RegisterUserInputPort {
+  private userRepo: UserRepository;
   private _encrypt: (data: string) => string;
 
-  constructor(userRepo: IUserRepository) {
+  constructor(userRepo: UserRepository) {
     this.userRepo = userRepo;
     this._encrypt = encrypt;
   }
 
-  /** for testing usage */
-  stubEncrypt(_encrypt: (data: string) => string) {
-    this._encrypt = _encrypt;
+  static createRequestModel(
+    name: string,
+    email: string,
+    password: string
+  ): RequestModel {
+    return new RequestModel(name, email, password);
   }
 
-  execute(input: RegisterUserInput): RegisterUserUsecaseOutput {
+  execute(input: RequestModel, output: RegisterUserOutputPort): void {
     try {
       const id: UserId = this.userRepo.nextId();
-      const { name, email, password, mobilePhone } = input;
+      const { name, email, password } = input;
 
       const hashedPassword = this._encrypt(password);
 
@@ -27,69 +30,44 @@ export class RegisterUser {
         id,
         name,
         email,
-        password: hashedPassword,
-        mobilePhone
+        password: hashedPassword
       });
       this.userRepo.save(user);
-      const output = RegisterUserUsecaseOutput.succeed(user);
-      return output;
-    } catch (error) {
-      const output = RegisterUserUsecaseOutput.fail(error.message);
-      return output;
-    }
+      output.onRegistered(new ResponseModel(user.name, user.email));
+    } catch (error) {}
+  }
+
+  /** for testing usage */
+  stubEncrypt(_encrypt: (data: string) => string) {
+    this._encrypt = _encrypt;
   }
 }
 
-interface RegisterUserInputProps {
+export interface RegisterUserInputPort {
+  execute(params: RequestModel, outputPort: RegisterUserOutputPort): void;
+}
+
+class RequestModel {
   name: string;
   email: string;
   password: string;
-  mobilePhone?: string;
-}
-
-export class RegisterUserInput implements RegisterUserInputProps {
-  name: string;
-  email: string;
-  password: string;
-  mobilePhone?: string;
-
-  constructor(props: RegisterUserInputProps) {
-    this.name = props.name;
-    this.email = props.email;
-    this.password = props.password;
-    this.mobilePhone = props.mobilePhone;
+  constructor(name: string, email: string, password: string) {
+    this.name = name;
+    this.email = email;
+    this.password = password;
   }
 }
 
-export interface RegisterUserOutputProps {
-  user: User | null;
-  success: boolean;
-  message: string;
+export interface RegisterUserOutputPort {
+  responseModel: ResponseModel | undefined;
+  onRegistered: (responseModel: ResponseModel) => void;
 }
 
-export class RegisterUserUsecaseOutput implements RegisterUserOutputProps {
-  user: User | null;
-  success: boolean;
-  message: string;
-  constructor(props: RegisterUserUsecaseOutput) {
-    this.user = props.user;
-    this.success = props.success;
-    this.message = props.message;
-  }
-
-  static succeed(user: User): RegisterUserUsecaseOutput {
-    return new RegisterUserUsecaseOutput({
-      user,
-      success: true,
-      message: 'ok'
-    });
-  }
-
-  static fail(message: string): RegisterUserUsecaseOutput {
-    return new RegisterUserUsecaseOutput({
-      user: null,
-      success: false,
-      message
-    });
+export class ResponseModel {
+  name: string | undefined;
+  email: string | undefined;
+  constructor(name: string, email: string) {
+    this.name = name;
+    this.email = email;
   }
 }

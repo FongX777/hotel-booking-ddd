@@ -47,6 +47,15 @@ it is just a simple way to avoid tons of `this` assignment
 
 ## Design Notes
 
+### Controller and Persenters
+
+http://www.plainionist.net/Implementing-Clean-Architecture-Controller-Presenter/
+https://crosp.net/blog/software-architecture/clean-architecture-part-2-the-clean-architecture/
+
+![img](https://plainionist.github.io/assets/clean-architecture/User.Interactor.Flow.png)
+
+### External Packages
+
 At first, I put all external npm modules in `src/booking/infrastructure/`, and they all
 implemnt interfaces from `src/booking/usecase/`.
 

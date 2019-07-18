@@ -1,8 +1,8 @@
-import IUserRepository from '../../../usecase/user/repository';
+import { UserRepository } from '../../../usecase/user';
 import { User, UserId } from '../../../domain/model/user/user';
 import { generateV4 } from '../__utils/uuid';
 
-export class MemeryUserRepository implements IUserRepository {
+export class MemeryUserRepository implements UserRepository {
   private users: User[];
   constructor() {
     this.users = [];
