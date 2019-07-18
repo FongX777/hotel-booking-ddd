@@ -2,7 +2,7 @@
  * https://expressjs.com/zh-tw/guide/using-middleware.html
  */
 import { Router } from 'express';
-import { RegisterUserUsecase, RegisterUserInputPort } from '../../usecase/user';
+import { GetUserUsecase, GetUserInputPort } from '../../usecase/user';
 import { UserRepository } from '../../usecase/user';
 import { UserPrensenter } from '../../adapter/presenter/user';
 import { UserController } from '../../adapter/controller/user';
