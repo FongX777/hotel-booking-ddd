@@ -26,6 +26,7 @@ So here are the implementation details:
    > I think in the begining, to reduce the complexity of the file structure, I would keep using `user.ts` unitl the controller is too large to fit in a file.
 4. Should I use dependency container here?
    > Maybe dependency container should be used in the outer layer
+5. Where should I inject repository?
 
 [ca-article]: http://www.informit.com/articles/article.aspx?p=2832399&seqNum=2 'Clean Architecture Article'
 [ca-book]: http://www.informit.com/store/clean-architecture--craftsmans-guide-to-software-structure-9780134494166?w_ptgrevartcl=The+Clean+Architecture+Dependency+Rule_2832399 'Clean Architecture Book'
