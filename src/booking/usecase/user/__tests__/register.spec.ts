@@ -1,6 +1,9 @@
 import { RegisterUserUsecase } from '../index';
 import { MemeryUserRepository } from '../../../adapter/repository/user';
-import { UserPrensenter } from '../../../adapter/presenter/user';
+import {
+  UserPrensenter,
+  UserPrensentModel
+} from '../../../adapter/presenter/user';
 
 describe('Register a User', function() {
   it('register a user', async function() {
@@ -17,6 +20,8 @@ describe('Register a User', function() {
 
     expect(output.success).toBeTruthy();
     expect(output.user).not.toBeUndefined();
-    expect(output.user).toEqual({ name, email });
+    const user = output.user as UserPrensentModel;
+    expect(user.name).toEqual(name);
+    expect(user.email).toEqual(email);
   });
 });

@@ -28,8 +28,6 @@ describe('Register a User', function() {
 
     await usecase.execute(input, output);
 
-    console.log(output);
-
     expect(output.success).toBeTruthy();
   });
 });

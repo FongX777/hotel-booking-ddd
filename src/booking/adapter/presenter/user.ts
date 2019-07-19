@@ -5,12 +5,12 @@ import {
   GetUserResp
 } from '../../usecase/user/';
 
-interface UserPrensentModel {
+export type UserPrensentModel = {
   id?: string;
   name?: string;
   email?: string;
   mobilePhone?: string;
-}
+};
 
 export class UserPrensenter
   implements RegisterUserOutputPort, GetUserOutputPort {
