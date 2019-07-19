@@ -28,16 +28,15 @@ describe('Get a User', function() {
   });
 
   it('should login successfully', async function() {
-    const usecase = new LoginUsecase(repo);
+    const usecase = new LoginUsecase('secret', repo);
     const input: LoginInput = { email, password };
     const output: LoginOutput = {};
 
     await usecase.execute(input, output);
 
-    expect(output).toEqual({
-      id,
-      name,
-      email
-    });
+    expect(output.id).toBe(id);
+    expect(output.name).toBe(name);
+    expect(output.email).toBe(email);
+    expect(output.token).not.toBeUndefined();
   });
 });

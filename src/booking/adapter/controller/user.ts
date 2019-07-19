@@ -2,8 +2,11 @@ import { UserRepository } from '../../usecase/user';
 import {
   RegisterUserUsecase,
   RegisterUserInput,
-  RegisterUserOutput
-} from '../../usecase/user/register';
+  RegisterUserOutput,
+  LoginUsecase,
+  LoginInput,
+  LoginOutput
+} from '../../usecase/user/';
 export class UserController {
   private userRepo: UserRepository;
   constructor(userRepo: UserRepository) {
@@ -28,7 +31,22 @@ export class UserController {
     };
   }
 
-  login(req: LoiginReq): LoginResp {}
+  login(req: LoginReq): LoginResp {
+    const input: LoginInput = {
+      email: req.email,
+      password: req.password
+    };
+    const output: LoginOutput = {};
+
+    const usecase = new LoginUsecase('', this.userRepo);
+    usecase.execute(input, output);
+    return {
+      token: output.token as string,
+      id: output.id as string,
+      name: output.name as string,
+      email: output.email as string
+    };
+  }
 }
 
 type LoginReq = {

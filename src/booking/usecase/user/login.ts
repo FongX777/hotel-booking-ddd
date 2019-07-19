@@ -1,11 +1,14 @@
 import { UserRepository } from '../../usecase/user/repository';
 import { compare } from '../__utils/bcrypt';
+import { sign } from '../__utils/jwt';
 
 export class LoginUsecase {
+  private readonly secret: string;
   private readonly userRepo: UserRepository;
   private _compare: (data: string, encrypted: string) => boolean;
 
-  constructor(userRepo: UserRepository) {
+  constructor(secret: string, userRepo: UserRepository) {
+    this.secret = secret;
     this.userRepo = userRepo;
     this._compare = compare;
   }
@@ -23,6 +26,7 @@ export class LoginUsecase {
       output.id = user.id.toValue();
       output.name = user.name;
       output.email = user.email;
+      output.token = sign(this.secret, user.id.toValue(), user.email);
     } else {
       return;
     }
@@ -38,4 +42,5 @@ export type LoginOutput = {
   id?: string;
   name?: string;
   email?: string;
+  token?: string;
 };
