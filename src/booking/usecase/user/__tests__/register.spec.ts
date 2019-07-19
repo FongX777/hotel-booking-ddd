@@ -8,7 +8,7 @@ import {
 describe('Register a User', function() {
   it('register a user', async function() {
     const repo = new MemeryUserRepository();
-    const usecase: RegisterUserUsecase = new RegisterUserUsecase(repo);
+    const usecase = new RegisterUserUsecase(repo);
     const output = new UserPrensenter();
 
     const name = 'abcd';

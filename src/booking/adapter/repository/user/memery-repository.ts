@@ -30,6 +30,13 @@ export class MemeryUserRepository implements UserRepository {
   }
 
   save(user: User): void {
-    this.users.push(user);
+    const existingUser = this.findById(user.id);
+    if (existingUser === undefined) {
+      this.users.push(user);
+    } else {
+      const index = this.users.findIndex(user => user.id.equals(user.id));
+      this.users.splice(index, 1);
+      this.users.push(user);
+    }
   }
 }
