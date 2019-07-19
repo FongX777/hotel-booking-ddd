@@ -1,4 +1,4 @@
-# Controller
+# Controller Introduction
 
 Controller is at Interface Adapter Layer and aims to decouple the relationship between IO layer and Use Case Layer. One good thing about the controller is that you can change the web framework whatever you like without affecting the inner layer. For example, I can easily switch the web framework from [ExpressJS](https://www.npmjs.com/package/express) to [koaJS](https://www.npmjs.com/package/koa) or even [GrahpQL](https://www.npmjs.com/package/graphql) easily by just adding it to the outer layer.
 
@@ -14,9 +14,18 @@ Also in this article: [Clean Architecture : Part 2 – The Clean Architecture][c
 So here are the implementation details:
 
 1. For every use case, controller must have a corresponding method.
-2. Controller would directly access use case layer
-3. After receiving results from use case layer, controller would format results into view model formats which are defined by each controller method.
+2. The controller would directly access use case layer
+3. The Controller cannot access to the result output from use case layer, it should be handled by presenter instead.
 4. The dependencies (e.g. repository) must be injected in the controller constructor.
+
+## Example
+
+1. The user interacts with the view.
+2. The view creates a request (object) which is passed to the **controller**.
+3. The **controller** converts the request into a request model and passes it to the use case interactor through its input port.
+4. The use case interactor processes the request model and creates a response model which is passed through the output port to the presenter.
+5. The presenter converts the response model to view model which is then passed to the view.
+6. The user sees the result of his interaction in the view.
 
 ## Questions Not Solved
 
@@ -28,6 +37,13 @@ So here are the implementation details:
    > Maybe dependency container should be used in the outer layer
 5. Where should I inject repository?
 6. Controller should be extracted from the route handler?
+
+## References
+
+- [The Clean Architecture Dependency Rule - page 2][ca-article]
+- [Clean Architecture : Part 2 – The Clean Architecture][ca-article-2]
+- [Implementing Clean Architecture - Of controllers and presenters](http://www.plainionist.net/Implementing-Clean-Architecture-Controller-Presenter/)
+- [YT - Robert C Martin - Clean Architecture and Design](https://www.youtube.com/watch?v=Nsjsiz2A9mg&feature=youtu.be&t=2476)
 
 [ca-article]: http://www.informit.com/articles/article.aspx?p=2832399&seqNum=2 'Clean Architecture Article'
 [ca-book]: http://www.informit.com/store/clean-architecture--craftsmans-guide-to-software-structure-9780134494166?w_ptgrevartcl=The+Clean+Architecture+Dependency+Rule_2832399 'Clean Architecture Book'
