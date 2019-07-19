@@ -15,11 +15,11 @@ export class RegisterUserUsecase implements RegisterUserInputPort {
     name: string,
     email: string,
     password: string
-  ): RegisterUserReqModel {
-    return new RegisterUserReqModel(name, email, password);
+  ): RegisterUserInput {
+    return { name, email, password };
   }
 
-  execute(input: RegisterUserReqModel, output: RegisterUserOutputPort): void {
+  execute(input: RegisterUserInput, output: RegisterUserOutputPort): void {
     try {
       const id: UserId = this.userRepo.nextId();
       const { name, email, password } = input;
@@ -33,9 +33,11 @@ export class RegisterUserUsecase implements RegisterUserInputPort {
         password: hashedPassword
       });
       this.userRepo.save(user);
-      output.onRegistered(
-        new RegisterUserRespModel(user.id.toValue(), user.name, user.email)
-      );
+      output.onRegistered({
+        id: user.id.toValue(),
+        name: user.name,
+        email: user.email
+      });
     } catch (error) {}
   }
 
@@ -46,34 +48,21 @@ export class RegisterUserUsecase implements RegisterUserInputPort {
 }
 
 export interface RegisterUserInputPort {
-  execute(
-    params: RegisterUserReqModel,
-    outputPort: RegisterUserOutputPort
-  ): void;
+  execute(params: RegisterUserInput, outputPort: RegisterUserOutputPort): void;
 }
 
-class RegisterUserReqModel {
+type RegisterUserInput = {
   name: string;
   email: string;
   password: string;
-  constructor(name: string, email: string, password: string) {
-    this.name = name;
-    this.email = email;
-    this.password = password;
-  }
-}
+};
 
 export interface RegisterUserOutputPort {
-  onRegistered: (responseModel: RegisterUserRespModel) => void;
+  onRegistered: (responseModel: RegisterUserOutput) => void;
 }
 
-export class RegisterUserRespModel {
+export type RegisterUserOutput = {
   id: string;
   name: string;
   email: string;
-  constructor(id: string, name: string, email: string) {
-    this.id = id;
-    this.name = name;
-    this.email = email;
-  }
-}
+};

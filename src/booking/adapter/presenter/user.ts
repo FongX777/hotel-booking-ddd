@@ -1,8 +1,8 @@
 import {
   RegisterUserOutputPort,
-  RegisterUserRespModel,
+  RegisterUserOutput,
   GetUserOutputPort,
-  GetUserResp
+  GetUserOutput
 } from '../../usecase/user/';
 
 export type UserPrensentModel = {
@@ -15,19 +15,23 @@ export type UserPrensentModel = {
 export class UserPrensenter
   implements RegisterUserOutputPort, GetUserOutputPort {
   success: boolean | undefined;
+  message: string;
   user?: UserPrensentModel;
 
   constructor() {
     this.success = false;
+    this.message = 'fail';
   }
 
-  onRegistered({ id, name, email }: RegisterUserRespModel): void {
+  onRegistered({ id, name, email }: RegisterUserOutput): void {
     this.success = true;
+    this.message = 'ok';
     this.user = { id, name, email };
   }
 
-  onFound({ id, email, name, mobilePhone }: GetUserResp) {
+  onFound({ id, email, name, mobilePhone }: GetUserOutput) {
     this.success = true;
+    this.message = 'ok';
     this.user = {
       id,
       email,
@@ -36,7 +40,8 @@ export class UserPrensenter
     };
   }
 
-  notFound() {
+  notFound(reason: string) {
     this.success = false;
+    this.message = reason;
   }
 }

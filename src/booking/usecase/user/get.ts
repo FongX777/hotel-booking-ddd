@@ -8,8 +8,8 @@ export class GetUserUsecase implements GetUserInputPort {
     this.userRepo = userRepo;
   }
 
-  static createRequestModel(id: string): RequestModel {
-    return new RequestModel(id);
+  static createRequestModel(id: string): GetUserInput {
+    return { id };
   }
 
   static createResponseModel(
@@ -17,18 +17,18 @@ export class GetUserUsecase implements GetUserInputPort {
     name: string,
     email: string,
     mobilePhone: string
-  ): GetUserResp {
+  ): GetUserOutput {
     return { id, name, email, mobilePhone };
   }
 
-  execute(input: RequestModel, output: GetUserOutputPort): void {
+  execute(input: GetUserInput, output: GetUserOutputPort): void {
     try {
       const { id } = input;
       const userId = new UserId(id);
       const user = this.userRepo.findById(userId);
 
       if (user === undefined) {
-        output.notFound();
+        output.notFound('User Not Exist');
       } else {
         output.onFound({
           id: user.id.toString(),
@@ -37,27 +37,27 @@ export class GetUserUsecase implements GetUserInputPort {
           mobilePhone: user.mobilePhone
         });
       }
-    } catch (error) {}
+    } catch (error) {
+      console.error(error);
+      output.notFound(error.message);
+    }
   }
 }
 
 export interface GetUserInputPort {
-  execute(params: RequestModel, outputPort: GetUserOutputPort): void;
+  execute(params: GetUserInput, outputPort: GetUserOutputPort): void;
 }
 
-class RequestModel {
+type GetUserInput = {
   id: string;
-  constructor(id: string) {
-    this.id = id;
-  }
-}
+};
 
 export interface GetUserOutputPort {
-  onFound: (respModel: GetUserResp) => void;
-  notFound: () => void;
+  onFound: (respModel: GetUserOutput) => void;
+  notFound: (reason: string) => void;
 }
 
-export type GetUserResp = {
+export type GetUserOutput = {
   id: string;
   name?: string;
   email?: string;
