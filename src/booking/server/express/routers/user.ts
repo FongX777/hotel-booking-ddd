@@ -9,12 +9,12 @@ export function createUserRoute(userRepo: UserRepository): Router {
   const router = Router();
   const userController = new UserController(userRepo);
 
-  router.get('/:id', function(req, res) {
+  router.get('/:id', (req, res) => {
     const id = req.params.id;
     res.send(id);
   });
 
-  router.post('/register', function(req, res) {
+  router.post('/register', (req, res) => {
     const { name, email, password } = req.body;
     const output = userController.register({ name, email, password });
     if (output.id) {
@@ -24,5 +24,35 @@ export function createUserRoute(userRepo: UserRepository): Router {
     }
   });
 
+  router.post('/login', (req, res) => {
+    const { email, password } = req.body;
+    const output = userController.login({ email, password });
+    if (output.token) {
+      res.header('x-auth', output.token).send({
+        id: output.id,
+        name: output.name,
+        email: output.email
+      });
+    } else {
+      res.status(400).send();
+    }
+  });
+
   return router;
 }
+
+// //POST /users/login {email, passwrod}
+// app.post('/users/login', (req, res) => {
+//   var body = _.pick(req.body, ['email', 'password']);
+
+//   User.findByCredentials(body.email, body.password)
+//     .then(user => {
+//       //res.send(user);
+//       return user.generateAuthToken().then(token => {
+//         res.header('x-auth', token).send(user);
+//       });
+//     })
+//     .catch(e => {
+//       res.status(400).send();
+//     });
+// });

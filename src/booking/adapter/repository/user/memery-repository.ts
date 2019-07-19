@@ -25,6 +25,10 @@ export class MemeryUserRepository implements UserRepository {
     return this.users.find(user => user.id.equals(id));
   }
 
+  findByEmail(email: String) {
+    return this.users.find(user => user.email === email);
+  }
+
   deleteById(id: UserId): void {
     return;
   }

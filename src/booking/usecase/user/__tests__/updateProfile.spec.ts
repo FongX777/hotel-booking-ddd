@@ -45,7 +45,6 @@ describe('Update profile', function() {
 
     usecase.execute(input, output);
 
-    console.log(output);
     expect(output.name).toBe(newName);
     expect(output.email).toBe(newEmail);
     expect(output.mobilePhone).toBe(newMobilePhone);

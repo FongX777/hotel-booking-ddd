@@ -9,6 +9,7 @@ export class UserController {
   constructor(userRepo: UserRepository) {
     this.userRepo = userRepo;
   }
+
   register(req: RegisterReq): RegisterResp {
     const input: RegisterUserInput = {
       name: req.name,
@@ -26,7 +27,20 @@ export class UserController {
       email: output.email as string
     };
   }
+
+  login(req: LoiginReq): LoginResp {}
 }
+
+type LoginReq = {
+  email: string;
+  password: string;
+};
+type LoginResp = {
+  token: string;
+  id: string;
+  name: string;
+  email: string;
+};
 
 type RegisterReq = {
   name: string;
