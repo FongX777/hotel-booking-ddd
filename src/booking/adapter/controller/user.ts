@@ -5,7 +5,7 @@ import {
   RegisterUserOutputPort
 } from '../../usecase/user/register';
 export class UserController {
-  userRepo: UserRepository;
+  private userRepo: UserRepository;
   constructor(userRepo: UserRepository) {
     this.userRepo = userRepo;
   }
