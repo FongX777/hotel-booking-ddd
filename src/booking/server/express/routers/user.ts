@@ -2,9 +2,9 @@
  * https://expressjs.com/zh-tw/guide/using-middleware.html
  */
 import { Router } from 'express';
-import { UserRepository } from '../../usecase/user';
-import { UserController } from '../../adapter/controller/user';
-import { UserPrensenter } from '../../adapter/presenter/user';
+import { UserRepository } from '../../../usecase/user';
+import { UserController } from '../../../adapter/controller/user';
+import { UserPrensenter } from '../../../adapter/presenter/user';
 
 export function createUserRoute(userRepo: UserRepository): Router {
   const router = Router();
