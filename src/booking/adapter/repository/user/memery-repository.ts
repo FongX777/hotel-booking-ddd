@@ -1,8 +1,8 @@
-import IUserRepository from '../../../usecase/user/i-repository';
+import { UserRepository } from '../../../usecase/user';
 import { User, UserId } from '../../../domain/model/user/user';
 import { generateV4 } from '../__utils/uuid';
 
-export class MemeryUserRepository implements IUserRepository {
+export class MemeryUserRepository implements UserRepository {
   private users: User[];
   constructor() {
     this.users = [];
@@ -22,7 +22,7 @@ export class MemeryUserRepository implements IUserRepository {
 
   findById(id: UserId): User | undefined {
     // todo
-    return this.users.find(user => user.id === id);
+    return this.users.find(user => user.id.equals(id));
   }
 
   deleteById(id: UserId): void {

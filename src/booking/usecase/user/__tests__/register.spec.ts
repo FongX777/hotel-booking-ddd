@@ -1,36 +1,27 @@
-import { User } from '../../../domain/model/user/user';
-import IUserRepository from '../i-repository';
+import { RegisterUserUsecase } from '../index';
 import { MemeryUserRepository } from '../../../adapter/repository/user';
 import {
-  RegisterUser,
-  RegisterUserInput,
-  RegisterUserUsecaseOutput
-} from '../register';
+  UserPrensenter,
+  UserPrensentModel
+} from '../../../adapter/presenter/user';
 
 describe('Register a User', function() {
-  it('register a user', function() {
-    const repo: IUserRepository = new MemeryUserRepository();
-    const usecase: RegisterUser = new RegisterUser(repo);
+  it('register a user', async function() {
+    const repo = new MemeryUserRepository();
+    const usecase: RegisterUserUsecase = new RegisterUserUsecase(repo);
+    const output = new UserPrensenter();
 
     const name = 'abcd';
     const email = 'abcd@mail.com';
     const password = '123456';
 
-    const input = new RegisterUserInput({
-      name,
-      email,
-      password
-    });
-
-    const output: RegisterUserUsecaseOutput = usecase.execute(input);
+    const input = RegisterUserUsecase.createRequestModel(name, email, password);
+    await usecase.execute(input, output);
 
     expect(output.success).toBeTruthy();
-    expect(output.user).not.toBeNull();
-
-    const user = output.user as User;
-    expect(user.password).not.toBeNull();
-    expect(user.name).toBe(name);
-    expect(user.email).toBe(email);
-    expect(user.mobilePhone).toBe('');
+    expect(output.user).not.toBeUndefined();
+    const user = output.user as UserPrensentModel;
+    expect(user.name).toEqual(name);
+    expect(user.email).toEqual(email);
   });
 });
