@@ -7,7 +7,6 @@ import {
   RegisterUserOutput
 } from '../index';
 import { MemeryUserRepository } from '../../../adapter/repository/user';
-import { UserPrensenter } from '../../../adapter/presenter/user';
 
 describe('Get a User', function() {
   let id: string;
