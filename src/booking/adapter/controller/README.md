@@ -1,6 +1,6 @@
 # Controller
 
-Controller is at Interface Adapter Layer and aims to decouple the relationship between IO layer and Use Case Layer.
+Controller is at Interface Adapter Layer and aims to decouple the relationship between IO layer and Use Case Layer. One good thing about the controller is that you can change the web framework whatever you like without affecting the inner layer. For example, I can easily switch the web framework from [ExpressJS](https://www.npmjs.com/package/express) to [koaJS](https://www.npmjs.com/package/koa) or even [GrahpQL](https://www.npmjs.com/package/graphql) easily by just adding it to the outer layer.
 
 Reference to this [article][ca-article] from [Clean Architecture][ca-book]:
 
@@ -9,7 +9,7 @@ Reference to this [article][ca-article] from [Clean Architecture][ca-book]:
 
 ![ A typical scenario for a web-based Java system utilizing a database](http://www.informit.com/content/images/chap22_9780134494166/elementLinks/22fig02.jpg)
 
-Also in this article: [Clean Architecture : Part 2 – The Clean Architecture][ca-article-2]
+Also in this article: [Clean Architecture : Part 2 – The Clean Architecture][ca-article-2], it mentioned how to implement it.
 
 So here are the implementation details:
 
