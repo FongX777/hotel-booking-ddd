@@ -1,25 +1,29 @@
 import { UserRepository } from '../../usecase/user';
 import {
   RegisterUserUsecase,
-  RegisterUserInputPort
+  RegisterUserInputPort,
+  RegisterUserOutputPort
 } from '../../usecase/user/register';
-import { UserPrensenter } from '../presenter/user';
 export class UserController {
   userRepo: UserRepository;
   constructor(userRepo: UserRepository) {
     this.userRepo = userRepo;
   }
-  register(name: string, email: string, password: string) {
+  register(req: RegisterReq, output: RegisterUserOutputPort) {
     const requestModel = RegisterUserUsecase.createRequestModel(
-      name,
-      email,
-      password
+      req.name,
+      req.email,
+      req.password
     );
     const usecase: RegisterUserInputPort = new RegisterUserUsecase(
       this.userRepo
     );
-    const output = new UserPrensenter();
     usecase.execute(requestModel, output);
-    return { success: output.success };
   }
 }
+
+type RegisterReq = {
+  name: string;
+  email: string;
+  password: string;
+};

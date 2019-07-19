@@ -4,6 +4,7 @@
 import { Router } from 'express';
 import { UserRepository } from '../../usecase/user';
 import { UserController } from '../../adapter/controller/user';
+import { UserPrensenter } from '../../adapter/presenter/user';
 
 export function createUserRoute(userRepo: UserRepository): Router {
   const router = Router();
@@ -16,8 +17,9 @@ export function createUserRoute(userRepo: UserRepository): Router {
 
   router.post('/register', function(req, res) {
     const { name, email, password } = req.body;
-    const dto = userController.register(name, email, password);
-    if (dto.success) {
+    const output = new UserPrensenter();
+    userController.register({ name, email, password }, output);
+    if (output.success) {
       res.redirect('/');
     } else {
       res.status(500).send(`register error`);
