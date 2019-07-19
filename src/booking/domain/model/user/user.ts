@@ -36,16 +36,26 @@ export class User extends Entity<UserProps> {
     this.props.id = id;
   }
   set name(name: string) {
-    this.name = name;
+    this.props.name = name;
   }
   set email(email: string) {
-    this.email = email;
+    this.props.email = email;
   }
   set password(password: string) {
     this.props.password = password;
   }
   set mobilePhone(mobilePhone: string) {
     this.props.mobilePhone = mobilePhone;
+  }
+
+  updateProfile(params: {
+    name: string;
+    email: string;
+    mobilePhone: string;
+  }): void {
+    this.name = params.name;
+    this.email = params.email;
+    this.mobilePhone = params.mobilePhone;
   }
 
   static register({
