@@ -2,7 +2,6 @@ import { ApolloServer, gql } from 'apollo-server';
 
 import { UserRepository } from '../../usecase/user';
 import { UserController } from '../../adapter/controller/user';
-import { UserPrensenter } from '../../adapter/presenter/user';
 
 const typeDefs = gql`
   type Query {
@@ -14,6 +13,7 @@ const typeDefs = gql`
   }
 
   type User {
+    id: ID!
     name: String
     email: String
     mobilePhone: String
@@ -32,15 +32,18 @@ const resolvers = {
       const userRepo = context.repository.user;
       const userController = new UserController(userRepo);
 
-      const output = new UserPrensenter();
       const req = {
         name: args.name,
         email: args.email,
         password: args.password
       };
 
-      userController.register(req, output);
-      return output.user;
+      const output = userController.register(req);
+      return {
+        id: output.id,
+        name: output.name,
+        email: output.email
+      };
     }
   }
 };

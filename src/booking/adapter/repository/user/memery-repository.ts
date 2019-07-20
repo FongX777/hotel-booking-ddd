@@ -25,11 +25,22 @@ export class MemeryUserRepository implements UserRepository {
     return this.users.find(user => user.id.equals(id));
   }
 
+  findByEmail(email: String) {
+    return this.users.find(user => user.email === email);
+  }
+
   deleteById(id: UserId): void {
     return;
   }
 
   save(user: User): void {
-    this.users.push(user);
+    const existingUser = this.findById(user.id);
+    if (existingUser === undefined) {
+      this.users.push(user);
+    } else {
+      const index = this.users.findIndex(user => user.id.equals(user.id));
+      this.users.splice(index, 1);
+      this.users.push(user);
+    }
   }
 }

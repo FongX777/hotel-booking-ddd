@@ -1,7 +1,7 @@
 import {
-  GetUserUsecase,
-  GetUserInput,
-  GetUserOutput,
+  LoginUsecase,
+  LoginInput,
+  LoginOutput,
   RegisterUserUsecase,
   RegisterUserInput,
   RegisterUserOutput
@@ -27,18 +27,16 @@ describe('Get a User', function() {
     id = output.id as string;
   });
 
-  it('should get a user just registered', async function() {
-    const usecase = new GetUserUsecase(repo);
-    const input: GetUserInput = { id };
-    const output: GetUserOutput = {};
+  it('should login successfully', async function() {
+    const usecase = new LoginUsecase('secret', repo);
+    const input: LoginInput = { email, password };
+    const output: LoginOutput = {};
 
     await usecase.execute(input, output);
 
-    expect(output).toEqual({
-      id,
-      name,
-      email,
-      mobilePhone: ''
-    });
+    expect(output.id).toBe(id);
+    expect(output.name).toBe(name);
+    expect(output.email).toBe(email);
+    expect(output.token).not.toBeUndefined();
   });
 });
