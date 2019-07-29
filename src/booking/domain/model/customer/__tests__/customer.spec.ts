@@ -1,24 +1,24 @@
-import { User, UserId } from '../user';
+import { Customer, CustomerId } from '../customer';
 
-describe('register an user', function() {
+describe('customer register', function() {
   it('should succeed', function() {
     const props = {
-      id: new UserId('1'),
+      id: new CustomerId('1'),
       name: 'chi gun',
       email: 'xx@mmail.com',
       password: '123456',
       mobilePhone: '0912121212'
     };
-    const user = User.register(props);
+    const customer = Customer.register(props);
 
-    expect(user.props).toEqual(props);
+    expect(customer.props).toEqual(props);
   });
 });
 
-describe('update an user profile', function() {
+describe('update an customer profile', function() {
   it('should succeed', function() {
-    const user = new User({
-      id: new UserId('1'),
+    const customer = new Customer({
+      id: new CustomerId('1'),
       name: 'chi gun',
       email: 'xx@mmail.com',
       password: '123456',
@@ -28,14 +28,14 @@ describe('update an user profile', function() {
     const newName = 'fong';
     const newEmail = 'yy@mail.com';
     const newMobilePhone = '0921212121';
-    user.updateProfile({
+    customer.updateProfile({
       name: newName,
       email: newEmail,
       mobilePhone: newMobilePhone
     });
 
-    expect(user.props).toEqual({
-      id: new UserId('1'),
+    expect(customer.props).toEqual({
+      id: new CustomerId('1'),
       name: newName,
       email: newEmail,
       password: '123456',

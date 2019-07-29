@@ -1,9 +1,9 @@
 import {
-  RegisterUserUsecase,
-  RegisterUserInput,
-  RegisterUserOutput
+  RegisterCustomerUsecase,
+  RegisterCustomerInput,
+  RegisterCustomerOutput
 } from '../index';
-import { MemeryUserRepository } from '../../../adapter/repository/user';
+import { MemeryCustomerRepository } from '../../../adapter/repository/customer';
 
 describe('Register a User', function() {
   it('should succeed', async function() {
@@ -11,14 +11,14 @@ describe('Register a User', function() {
     const email = 'abcd@mail.com';
     const password = '123456';
 
-    const input: RegisterUserInput = {
+    const input: RegisterCustomerInput = {
       name,
       email,
       password
     };
-    const output: RegisterUserOutput = {};
-    const repo = new MemeryUserRepository();
-    const usecase = new RegisterUserUsecase(repo);
+    const output: RegisterCustomerOutput = {};
+    const repo = new MemeryCustomerRepository();
+    const usecase = new RegisterCustomerUsecase(repo);
 
     usecase.execute(input, output);
 

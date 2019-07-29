@@ -1,17 +1,17 @@
 import { Entity, Identifier } from '../__shared';
 
-export class UserId extends Identifier<string> {}
+export class CustomerId extends Identifier<string> {}
 
-interface UserProps {
-  id: UserId;
+interface CustomerProps {
+  id: CustomerId;
   name: string;
   email: string;
   password: string;
   mobilePhone: string;
 }
 
-export class User extends Entity<UserProps> {
-  constructor(props: UserProps) {
+export class Customer extends Entity<CustomerProps> {
+  constructor(props: CustomerProps) {
     super(props);
     // check parameters....
   }
@@ -32,7 +32,7 @@ export class User extends Entity<UserProps> {
     return this.props.mobilePhone;
   }
 
-  set id(id: UserId) {
+  set id(id: CustomerId) {
     this.props.id = id;
   }
   set name(name: string) {
@@ -65,13 +65,13 @@ export class User extends Entity<UserProps> {
     password,
     mobilePhone = ''
   }: {
-    id: UserId;
+    id: CustomerId;
     name: string;
     email: string;
     password: string;
     mobilePhone?: string;
-  }): User {
-    return new User({
+  }): Customer {
+    return new Customer({
       id,
       name,
       email,

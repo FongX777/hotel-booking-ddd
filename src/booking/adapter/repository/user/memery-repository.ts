@@ -1,14 +1,14 @@
-import { UserRepository } from '../../../usecase/user';
-import { User, UserId } from '../../../domain/model/user/user';
+import { CustomerRepository } from '../../../usecase/customer';
+import { Customer, CustomerId } from '../../../domain/model/customer/customer';
 import { generateV4 } from '../__utils/uuid';
 
-export class MemeryUserRepository implements UserRepository {
-  private users: User[];
+export class MemeryUserRepository implements CustomerRepository {
+  private users: Customer[];
   constructor() {
     this.users = [];
   }
 
-  nextId(): UserId {
+  nextId(): CustomerId {
     const date: Date = new Date();
     const dateStr: string = [
       date.getFullYear(),
@@ -17,10 +17,10 @@ export class MemeryUserRepository implements UserRepository {
     ].join('');
     const newUuid: string = generateV4().substr(0, 20);
     const id: string = `booking-user-${dateStr}-${newUuid}`;
-    return new UserId(id);
+    return new CustomerId(id);
   }
 
-  findById(id: UserId): User | undefined {
+  findById(id: CustomerId): Customer | undefined {
     // todo
     return this.users.find(user => user.id.equals(id));
   }
@@ -29,11 +29,11 @@ export class MemeryUserRepository implements UserRepository {
     return this.users.find(user => user.email === email);
   }
 
-  deleteById(id: UserId): void {
+  deleteById(id: CustomerId): void {
     return;
   }
 
-  save(user: User): void {
+  save(user: Customer): void {
     const existingUser = this.findById(user.id);
     if (existingUser === undefined) {
       this.users.push(user);
