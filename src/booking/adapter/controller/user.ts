@@ -1,27 +1,27 @@
-import { UserRepository } from '../../usecase/user';
+import { CustomerRepository } from '../../usecase/customer';
 import {
-  RegisterUserUsecase,
-  RegisterUserInput,
-  RegisterUserOutput,
+  RegisterCustomerUsecase,
+  RegisterCustomerInput,
+  RegisterCustomerOutput,
   LoginUsecase,
   LoginInput,
   LoginOutput
-} from '../../usecase/user/';
+} from '../../usecase/customer/';
 export class UserController {
-  private userRepo: UserRepository;
-  constructor(userRepo: UserRepository) {
-    this.userRepo = userRepo;
+  private customerRepo: CustomerRepository;
+  constructor(customerRepo: CustomerRepository) {
+    this.customerRepo = customerRepo;
   }
 
   register(req: RegisterReq): RegisterResp {
-    const input: RegisterUserInput = {
+    const input: RegisterCustomerInput = {
       name: req.name,
       email: req.email,
       password: req.password
     };
 
-    const output: RegisterUserOutput = {};
-    const usecase = new RegisterUserUsecase(this.userRepo);
+    const output: RegisterCustomerOutput = {};
+    const usecase = new RegisterCustomerUsecase(this.customerRepo);
     usecase.execute(input, output);
 
     return {
@@ -38,7 +38,7 @@ export class UserController {
     };
     const output: LoginOutput = {};
 
-    const usecase = new LoginUsecase('', this.userRepo);
+    const usecase = new LoginUsecase('', this.customerRepo);
     usecase.execute(input, output);
     return {
       token: output.token as string,

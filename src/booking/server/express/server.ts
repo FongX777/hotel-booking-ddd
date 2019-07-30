@@ -3,7 +3,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 
 import { createUserRoute } from './routers/user';
-import { UserRepository } from '../../usecase/user';
+import { CustomerRepository } from '../../usecase/customer';
 
 export interface Config {
   port: number;
@@ -14,7 +14,7 @@ export interface ExpressApp {
 }
 
 export interface Repositories {
-  user: UserRepository;
+  user: CustomerRepository;
 }
 
 export function createExpressServerApp(

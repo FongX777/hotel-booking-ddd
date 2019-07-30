@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server';
 
-import { UserRepository } from '../../usecase/user';
+import { CustomerRepository } from '../../usecase/customer';
 import { UserController } from '../../adapter/controller/user';
 
 const typeDefs = gql`
@@ -57,7 +57,7 @@ export interface Config {
 }
 
 export interface Repositories {
-  user: UserRepository;
+  user: CustomerRepository;
 }
 
 type GraphqlContext = {
