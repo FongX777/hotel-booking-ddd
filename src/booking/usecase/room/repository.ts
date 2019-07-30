@@ -4,5 +4,5 @@ export interface RoomRepository{
     nextId:() => RoomId;
     findById:(id:RoomId) => Room|undefined;
     save:(room:Room) => void;
-    activate:(id:RoomId) => void;
+    // activate:(id:RoomId) => void;
 }

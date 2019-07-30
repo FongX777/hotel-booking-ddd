@@ -25,14 +25,25 @@ export class MemoryRoomRepository implements RoomRepository{
     }
 
     save(room: Room) : void{
-        // todo 
-        return ;
+        const existingRoom =this.findById(room.id);
+        if(existingRoom === undefined){
+            this.rooms.push(room);
+        }
+        else{
+            const index = this.rooms.findIndex(room =>room.id.equals(room.id));
+            this.rooms.splice(index,1);
+            this.rooms.push(room);
+        }
     }
-    activate(id: RoomId) : void{
-        // todo
-        return ;
-    };
-
-    
-    
+    // activate(id: RoomId) : void{
+    //     const existingRoom =this.activate(id);
+    //     if(existingRoom === undefined){
+    //         throw new Error("try to activate room that doesn't exist.");
+    //     }
+    //     else{
+    //         const index = this.rooms.findIndex(room =>room.id.equals(room.id));
+    //         this.rooms.splice(index,1);
+    //         this.rooms.push(existingRoom);
+    //     }
+    // };
 }

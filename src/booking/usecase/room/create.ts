@@ -23,7 +23,7 @@ export class CreateRoomUsecase{
             coverImage,
             images
         });
-
+        this.roomRepo.save(room);
         output.success =true;
         output.id = id.toValue();
     }
