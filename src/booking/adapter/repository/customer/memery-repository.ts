@@ -1,4 +1,4 @@
-import { CustomerRepository } from '../../../usecase/customer';
+import { CustomerRepository } from '../../../domain/model/customer/repository';
 import { Customer, CustomerId } from '../../../domain/model/customer/customer';
 import { generateV4 } from '../__utils/uuid';
 
