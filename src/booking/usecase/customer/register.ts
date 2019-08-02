@@ -1,5 +1,5 @@
 import { Customer, CustomerId } from '../../domain/model/customer/customer';
-import { CustomerRepository } from './';
+import { CustomerRepository } from '../../domain/model/customer/repository';
 import { encrypt } from '../__utils/bcrypt';
 
 export class RegisterCustomerUsecase {

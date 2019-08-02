@@ -1,4 +1,4 @@
-import { Customer, CustomerId } from '../../domain/model/customer/customer';
+import { Customer, CustomerId } from './customer';
 export interface CustomerRepository {
   nextId: () => CustomerId;
   findById: (id: CustomerId) => Customer | undefined;

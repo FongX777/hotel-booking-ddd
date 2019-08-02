@@ -1,5 +1,5 @@
 import { CustomerId } from '../../domain/model/customer/customer';
-import { CustomerRepository } from '../../usecase/customer/repository';
+import { CustomerRepository } from '../../domain/model/customer/repository';
 export class UpdateCustomerProfileUsecase {
   private readonly customerRepo: CustomerRepository;
   constructor(customerRepo: CustomerRepository) {

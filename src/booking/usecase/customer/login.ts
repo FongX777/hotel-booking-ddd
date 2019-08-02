@@ -1,4 +1,4 @@
-import { CustomerRepository } from '../../usecase/customer/repository';
+import { CustomerRepository } from '../../domain/model/customer/repository';
 import { compare } from '../__utils/bcrypt';
 import { sign } from '../__utils/jwt';
 

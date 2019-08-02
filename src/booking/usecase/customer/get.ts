@@ -1,5 +1,5 @@
 import { CustomerId } from '../../domain/model/customer/customer';
-import { CustomerRepository } from './';
+import { CustomerRepository } from '../../domain/model/customer/repository';
 
 export class GetCustomerUsecase {
   constructor(private readonly customerRepo: CustomerRepository) {

@@ -1,6 +1,6 @@
 import { ApolloServer, gql } from 'apollo-server';
 
-import { CustomerRepository } from '../../usecase/customer';
+import { CustomerRepository } from '../../domain/model/customer/repository';
 import { UserController } from '../../adapter/controller/user';
 
 const typeDefs = gql`

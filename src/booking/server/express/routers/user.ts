@@ -2,7 +2,7 @@
  * https://expressjs.com/zh-tw/guide/using-middleware.html
  */
 import { Router } from 'express';
-import { CustomerRepository } from '../../../usecase/customer';
+import { CustomerRepository } from '../../../domain/model/customer/repository';
 import { UserController } from '../../../adapter/controller/user';
 
 export function createUserRoute(customerRepo: CustomerRepository): Router {
