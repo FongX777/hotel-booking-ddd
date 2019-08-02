@@ -25,6 +25,7 @@
     "@types/node": "^12.6.8",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
+    "barrelsby": "^2.1.1",
     "eslint": "^6.0.1",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",

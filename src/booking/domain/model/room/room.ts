@@ -72,6 +72,34 @@ export class Room extends Entity<RoomProps> {
     this.props.active = false;
   }
 
+  edit(params: {
+    roomNo: string;
+    name: string;
+    description?: string;
+    numberOfOccupants: number;
+    facilities?: string[];
+    size: number;
+    price: number;
+    coverImage?: string | null;
+    images?: string[];
+    active: boolean;
+  }){
+    const new_props: RoomProps = {
+      id: this.props.id,
+      roomNo: params.roomNo,
+      name: params.name,
+      description: params.description || '',
+      numberOfOccupants: params.numberOfOccupants,
+      facilities: params.facilities || [],
+      size: params.size,
+      price: params.price,
+      coverImage: params.coverImage || null,
+      images: params.images || [],
+      active: params.active
+    };
+    this.props = new_props;
+  }
+
   addFacilities(facilities: string[]) {
     const newFacilities = new Set(this.props.facilities.concat(facilities));
     this.props.facilities = [...newFacilities];
