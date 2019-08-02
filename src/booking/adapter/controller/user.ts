@@ -1,4 +1,4 @@
-import { CustomerRepository } from '../../usecase/customer';
+import { CustomerRepository } from '../../domain/model/customer/repository';
 import {
   RegisterCustomerUsecase,
   RegisterCustomerInput,
