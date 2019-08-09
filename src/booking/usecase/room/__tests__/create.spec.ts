@@ -1,7 +1,7 @@
 import {
-    GetRoomUseCase,
-    GetRoomInput,
-    GetRoomOutput,
+    // GetRoomUseCase,
+    // GetRoomInput,
+    // GetRoomOutput,
     CreateRoomUsecase,
     CreateRoomInput,
     CreateRoomOutput
