@@ -97,7 +97,7 @@ export class Booking extends Entity<BookingProps>{
         this.props= new_props;
     }
 
-    paid(){
+    pay(){
         if(this.props.status===BookingStatus.UNPAID){
             this.props.status = BookingStatus.PAID;
         }

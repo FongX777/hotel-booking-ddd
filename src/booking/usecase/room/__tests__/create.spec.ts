@@ -1,7 +1,4 @@
 import {
-    // GetRoomUseCase,
-    // GetRoomInput,
-    // GetRoomOutput,
     CreateRoomUsecase,
     CreateRoomInput,
     CreateRoomOutput
@@ -20,8 +17,6 @@ describe ('Create a Room',function(){
     const price = 6940;
     const coverImage = 'https://xvideos.com?page=10000&picture=22';
     const images : string[] = [];
-    
-
     const repo = new MemoryRoomRepository();
     it('create a room',async function(){
         const usecase =new CreateRoomUsecase(repo);

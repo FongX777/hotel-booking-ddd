@@ -42,7 +42,7 @@ describe('Booking create than edit',function(){
 
 describe('change booking status',function(){
     it('booking paid',function(){
-        result.paid();
+        result.pay();
         expect(result.id).toEqual(new BookingId(id));
         expect(result.status).toEqual(BookingStatus.PAID);
     })
