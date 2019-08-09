@@ -20,8 +20,7 @@ export class HotelierLoginUsecase {
       return;
     }
 
-    // const passwordMatched = this._compare(password, hotelier.password);
-    const passwordMatched = true;
+    const passwordMatched = this._compare(password, hotelier.password);
     if (passwordMatched) {
       output.id = hotelier.id.toValue();
       output.email = hotelier.email;
@@ -30,6 +29,10 @@ export class HotelierLoginUsecase {
     } else {
       return;
     }
+  }
+
+  stubCompare(_compare: (data: string, encrypted: string) => boolean) {
+    this._compare = _compare;
   }
 }
 

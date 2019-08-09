@@ -26,7 +26,10 @@ describe('Hotelier login use case', () => {
       password
     };
     const output: HotelierLoginOutput = {};
-    const usecase = new HotelierLoginUsecase('', repo);
+    const usecase = new HotelierLoginUsecase('secret', repo);
+    usecase.stubCompare(
+      (data: string, encrypted: string) => data === encrypted
+    );
 
     usecase.execute(input, output);
 
