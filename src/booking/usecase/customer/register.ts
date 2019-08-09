@@ -1,4 +1,4 @@
-import { Customer, CustomerId } from '../../domain/model/customer/customer';
+import { CustomerIdentityService } from '../../domain/service/customer-identity-service';
 import { CustomerRepository } from '../../domain/model/customer/repository';
 import { encrypt } from '../__utils/bcrypt';
 
@@ -12,17 +12,16 @@ export class RegisterCustomerUsecase {
   }
 
   execute(input: RegisterCustomerInput, output: RegisterCustomerOutput): void {
-    const id: CustomerId = this.customerRepo.nextId();
     const { name, email, password } = input;
 
-    const hashedPassword = this._encrypt(password);
-
-    const customer = Customer.register({
-      id,
+    const service = new CustomerIdentityService(this._encrypt);
+    const customer = service.registerCustomer({
+      id: this.customerRepo.nextId(),
       name,
       email,
-      password: hashedPassword
+      plainTextPassword: password
     });
+
     this.customerRepo.save(customer);
 
     output.id = customer.id.toValue();

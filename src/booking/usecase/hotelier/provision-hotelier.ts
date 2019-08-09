@@ -18,6 +18,7 @@ export class ProvisionHotelierUsecase {
       email,
       plainTextPassword
     });
+    this.hotelierRepo.save(hotelier);
     output.id = hotelier.id.toValue();
     output.email = hotelier.email;
   }

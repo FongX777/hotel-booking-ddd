@@ -3,7 +3,7 @@ import { Customer, CustomerId } from '../../../domain/model/customer/customer';
 import { generateV4 } from '../__utils/uuid';
 
 export class MemeryCustomerRepository implements CustomerRepository {
-  private customers: Customer[];
+  public customers: Customer[];
   constructor() {
     this.customers = [];
   }

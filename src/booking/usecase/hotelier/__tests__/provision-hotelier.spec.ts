@@ -23,5 +23,6 @@ describe('Provision a new hotelier', () => {
 
     expect(output.id).not.toBeUndefined();
     expect(output.email).toBe(email);
+    expect(repostiroy.hoteliers.length).toBe(1);
   });
 });

@@ -25,5 +25,6 @@ describe('Register a User', function() {
     expect(output.id).not.toBeUndefined();
     expect(output.name).toBe(name);
     expect(output.email).toBe(email);
+    expect(repo.customers.length).toBe(1);
   });
 });
