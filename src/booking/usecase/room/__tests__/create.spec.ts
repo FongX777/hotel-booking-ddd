@@ -26,22 +26,4 @@ describe ('Create a Room',function(){
         id = output.id as string;
         expect(output.success).toBeTruthy();
     });
-
-    
-    // it('get a room by id',async function(){
-    //     const usecase =new GetRoomUseCase(repo);
-    //     const input : GetRoomInput ={id};
-    //     const output: GetRoomOutput = {};
-    //     await usecase.execute(input,output);
-    //     expect(output.id).toBe(id);
-    //     expect(output.roomNo).toBe(roomNo);
-    //     expect(output.size).toBe(size);
-    //     expect(output.coverImage).toBe(coverImage);
-    //     expect(output.description).toBe(description);
-    //     expect(output.facilities).toBe(facilities);
-    //     expect(output.images).toBe(images);
-    //     expect(output.name).toBe(name);
-    //     expect(output.numberOfOccupants).toBe(numberOfOccupants);
-    //     expect(output.price).toBe(price);
-    // });
 });
