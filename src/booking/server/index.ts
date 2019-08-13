@@ -1,5 +1,5 @@
 import dotenv from 'dotenv';
-import { MemeryUserRepository } from '../adapter/repository/user/index';
+import { MemeryCustomerRepository } from '../adapter/repository/customer/index';
 
 if (process.env.NODE_ENV === 'dev') {
   dotenv.config();
@@ -12,7 +12,7 @@ const config = { port: Number(process.env.PORT) };
 
 if (process.env.NODE_ENV === 'dev') {
   const repos = {
-    user: new MemeryUserRepository()
+    user: new MemeryCustomerRepository()
   };
   const app = createGraphqlServerApp(config, repos);
   app.start();

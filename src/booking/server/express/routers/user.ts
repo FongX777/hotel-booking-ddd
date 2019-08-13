@@ -2,12 +2,12 @@
  * https://expressjs.com/zh-tw/guide/using-middleware.html
  */
 import { Router } from 'express';
-import { UserRepository } from '../../../usecase/user';
+import { CustomerRepository } from '../../../domain/model/customer/repository';
 import { UserController } from '../../../adapter/controller/user';
 
-export function createUserRoute(userRepo: UserRepository): Router {
+export function createUserRoute(customerRepo: CustomerRepository): Router {
   const router = Router();
-  const userController = new UserController(userRepo);
+  const userController = new UserController(customerRepo);
 
   router.get('/:id', (req, res) => {
     const id = req.params.id;

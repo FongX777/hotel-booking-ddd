@@ -1,28 +1,28 @@
 import {
-  UpdateProfileUsecase,
+  UpdateCustomerProfileUsecase,
   UpdateProfileInput,
   UpdateProfileOutput,
-  RegisterUserUsecase,
-  RegisterUserInput,
-  RegisterUserOutput
+  RegisterCustomerUsecase,
+  RegisterCustomerInput,
+  RegisterCustomerOutput
 } from '../index';
-import { MemeryUserRepository } from '../../../adapter/repository/user';
+import { MemeryCustomerRepository } from '../../../adapter/repository/customer';
 
 describe('Update profile', function() {
   let id: string;
   const name = 'abcd';
   const email = 'abcd@mail.com';
   const password = '123456';
-  const repo = new MemeryUserRepository();
+  const repo = new MemeryCustomerRepository();
 
   beforeEach(async () => {
-    const input: RegisterUserInput = {
+    const input: RegisterCustomerInput = {
       name,
       email,
       password
     };
-    const output: RegisterUserOutput = {};
-    const usecase = new RegisterUserUsecase(repo);
+    const output: RegisterCustomerOutput = {};
+    const usecase = new RegisterCustomerUsecase(repo);
     usecase.execute(input, output);
     id = output.id as string;
   });
@@ -41,7 +41,7 @@ describe('Update profile', function() {
       mobilePhone: newMobilePhone
     };
 
-    const usecase = new UpdateProfileUsecase(repo);
+    const usecase = new UpdateCustomerProfileUsecase(repo);
 
     usecase.execute(input, output);
 

@@ -2,27 +2,27 @@ import {
   LoginUsecase,
   LoginInput,
   LoginOutput,
-  RegisterUserUsecase,
-  RegisterUserInput,
-  RegisterUserOutput
+  RegisterCustomerUsecase,
+  RegisterCustomerInput,
+  RegisterCustomerOutput
 } from '../index';
-import { MemeryUserRepository } from '../../../adapter/repository/user';
+import { MemeryCustomerRepository } from '../../../adapter/repository/customer';
 
 describe('Get a User', function() {
   let id: string;
   const name = 'abcd';
   const email = 'abcd@mail.com';
   const password = '123456';
-  const repo = new MemeryUserRepository();
+  const repo = new MemeryCustomerRepository();
 
   beforeEach(async () => {
-    const input: RegisterUserInput = {
+    const input: RegisterCustomerInput = {
       name,
       email,
       password
     };
-    const output: RegisterUserOutput = {};
-    const usecase = new RegisterUserUsecase(repo);
+    const output: RegisterCustomerOutput = {};
+    const usecase = new RegisterCustomerUsecase(repo);
     await usecase.execute(input, output);
     id = output.id as string;
   });
