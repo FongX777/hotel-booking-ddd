@@ -1,13 +1,13 @@
 import {RoomId, Room } from '../../domain/model/room/room';
 import {RoomRepository} from './repository';
 
-export class GetRoomUseCase{
+export class SearchRoomUseCase{
     private readonly roomRepo : RoomRepository;
     constructor(roomRepo: RoomRepository){
         this.roomRepo =roomRepo;
     }
 
-    execute(input: GetRoomInput, output: GetRoomOutput){
+    execute(input: SearchRoomInput, output: SearchRoomOutput){
         const {id} = input;
         const roomid = new RoomId(id);
         const room = this.roomRepo.findById(roomid);
@@ -29,11 +29,11 @@ export class GetRoomUseCase{
         }
     }
 }
-export type GetRoomInput = {
+export type SearchRoomInput = {
     id : string;
 };
 
-export type GetRoomOutput ={
+export type SearchRoomOutput ={
     id?: string;
     roomNo?: string;
     name?: string;

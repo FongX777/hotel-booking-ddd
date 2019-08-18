@@ -1,11 +1,11 @@
 import {Room,RoomId} from '../../domain/model/room/room';
 import {RoomRepository} from '../../usecase/room/repository';
 
-export class UpdateRoomUsecase{
+export class EditRoomUsecase{
     constructor(private readonly roomRepo:RoomRepository){
         this.roomRepo = roomRepo;
     }
-    execute(input:UpdateRoomInput,output:UpdateRoomOutput){
+    execute(input:EditRoomInput,output:EditRoomOutput){
         const roomId = new RoomId(input.id);
         const room = this.roomRepo.findById(roomId);
         if(room === undefined){
@@ -24,12 +24,11 @@ export class UpdateRoomUsecase{
             active:room.active
         });
         this.roomRepo.save(room);
-        output.id = input.id;
         output.success = true;
     }
 }
 
-export type UpdateRoomInput={
+export type EditRoomInput={
     id: string;
     roomNo: string;
     name: string;
@@ -43,7 +42,6 @@ export type UpdateRoomInput={
     active: boolean;
 }
 
-export type UpdateRoomOutput={
-    id?: string;
+export type EditRoomOutput={
     success?:boolean;
 }

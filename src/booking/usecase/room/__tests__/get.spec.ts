@@ -1,7 +1,7 @@
 import {
-    GetRoomUseCase,
-    GetRoomInput,
-    GetRoomOutput,
+    SearchRoomUseCase,
+    SearchRoomInput,
+    SearchRoomOutput,
     CreateRoomUsecase,
     CreateRoomInput,
     CreateRoomOutput
@@ -9,7 +9,7 @@ import {
 
 import { MemoryRoomRepository } from '../../../adapter/repository/room/memory-repository'
 
-describe('Get a Room',function(){
+describe('Search a Room',function(){
     let id: string;
     const roomNo = '103A';
     const name  = '至尊大屌套房';
@@ -33,9 +33,9 @@ describe('Get a Room',function(){
     // room just created will be unactive.
     const active = false;
     it('should get a room just created',async function(){
-        const usecase = new GetRoomUseCase(repo);
-        const input : GetRoomInput={id};
-        const output: GetRoomOutput={};
+        const usecase = new SearchRoomUseCase(repo);
+        const input : SearchRoomInput={id};
+        const output: SearchRoomOutput={};
         await usecase.execute(input,output);
         expect(output).toEqual({
             id,

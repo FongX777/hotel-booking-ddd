@@ -1,7 +1,7 @@
 import {
-    UpdateRoomUsecase,
-    UpdateRoomInput,
-    UpdateRoomOutput,
+    EditRoomUsecase,
+    EditRoomInput,
+    EditRoomOutput,
     CreateRoomInput,
     CreateRoomOutput,
     CreateRoomUsecase
@@ -41,9 +41,9 @@ describe('Update room profile',function(){
     const _images : string[] = ['https://xvideos.com?page=10000&picture=22','https://xvideos.com?page=10002&picture=21','https://xvideos.com?page=10001&picture=23'];
     const _active = true;
 
-    it('update a room just created',async function(){
-        const usecase = new UpdateRoomUsecase(repo);
-        const input : UpdateRoomInput={
+    it('edit a room just created',async function(){
+        const usecase = new EditRoomUsecase(repo);
+        const input : EditRoomInput={
             id,
             name:_name,
             roomNo:_roomNo,
@@ -56,7 +56,7 @@ describe('Update room profile',function(){
             images:_images,
             active:_active
         };
-        const output: UpdateRoomOutput ={}; 
+        const output: EditRoomOutput ={}; 
         await usecase.execute(input,output);
         expect(output.success).toBeTruthy();
     });
