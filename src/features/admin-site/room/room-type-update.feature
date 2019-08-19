@@ -1,3 +1,4 @@
+# TODO
 Feature: Room Type Update
     * A room type name cannot be null or empty
     * the capacity of the room type cannot be < 0
