@@ -42,6 +42,27 @@
 | room no. status                                      | active, inactive, temporarily inactive                                                                                                                                                            |
 | room no. extra information                           | 給 hotelier 記錄用                                                                                                                                                                                |
 
+## Customer
+
+| jargon                                               | meaning                                                                                                                                                                                           |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Customer status                                               | active or inactive, decided by the hotelier                                                                                                                                                                                            |
+
+## Booking
+
+| jargon                                               | meaning                                                                                                                                                                                           |
+| ---------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Booking No.                                               |                                                                                                                                                                                             |
+| Booking Status                                               |                                                                                                                                                                                             |
+| Booking Status                                               | 'Process In Progress', 'Awaiting Payment', 'Payment Accepted', 'Payment Error', 'Refunded', 'Canceled', 'Checked In', 'Checked Out'                                                                                                                                                                                              |
+| Booking Payment                                               |                                                                                                                                                                                             |
+| Booking Total 預約金額                                               |                                                                                                                                                                                             |
+| Booking Date 預約時間                                               |                                                                                                                                                                                             |
+| Booking Invoice                                               |                                                                                                                                                                                             |
+| Booking Invoice issued date                                               |                                                                                                                                                                                             |
+| Booking Invoice number                                               |                                                                                                                                                                                             |
+
+
 ---
 
 ## QA:
