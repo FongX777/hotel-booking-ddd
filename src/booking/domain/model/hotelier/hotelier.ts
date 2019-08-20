@@ -1,6 +1,6 @@
 import { Entity, Identifier } from '../__shared';
 
-export class HotelierId extends Identifier<string> {}
+export class HotelierId extends Identifier<string> { }
 
 interface HotelierProps {
   id: HotelierId;
