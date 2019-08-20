@@ -1,5 +1,14 @@
 # Jargon List
 
+## User
+
+| jargon        | meaning                                             |
+| ------------- | --------------------------------------------------- |
+| guest 訪客    | a web user using the booking-site without logged in |
+| customer 客人 | a web user using the booking-site                   |
+| profile       | the information and contact way of a customer       |
+| feedback      | the review for the booking                          |
+
 ## Room
 
 | jargon                                               | meaning                                                                                                                                                                                           |
@@ -60,18 +69,3 @@
 | Booking Invoice             |                                                                                                                                     |
 | Booking Invoice issued date |                                                                                                                                     |
 | Booking Invoice number      |                                                                                                                                     |
-
----
-
-## QA:
-
-## Reference
-
-- [BuesinessDictionary](http://www.businessdictionary.com)
-- [民宿適用住家稅率 有條件](https://house.udn.com/house/story/5916/2220136)
-
-- [Differences between inactive vs disabled and active vs enabled services](https://unix.stackexchange.com/questions/159174/differences-between-inactive-vs-disabled-and-active-vs-enabled-services)
-  - enabled - a service (unit) is configured to start when the system boots
-  - disabled - a service (unit) is configured to not start when the system boots
-  - active - a service (unit) is currently running.
-  - inactive - a service (unit) is currently not running, but may get started, i.e. become active, if something attempts to make use of the service.
