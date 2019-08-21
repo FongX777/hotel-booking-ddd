@@ -1,6 +1,6 @@
 import { Entity, Identifier } from '../__shared';
 
-export class RoomId extends Identifier<string> {}
+export class RoomId extends Identifier<string> { }
 
 export interface RoomProps {
   id: RoomId;
@@ -83,7 +83,7 @@ export class Room extends Entity<RoomProps> {
     coverImage?: string | null;
     images?: string[];
     active: boolean;
-  }){
+  }) {
     const new_props: RoomProps = {
       id: this.props.id,
       roomNo: params.roomNo,
