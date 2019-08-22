@@ -1,16 +1,11 @@
-Feature: Paying for rooms
-    * paying for rooms require  orderId, thirdPartyService
-    * orderId >0 (int)
-    * thirdPartyService (enum)
+Feature: Customer pays for the booking
+  As a customer,
+  I want to pay for the booking
+  so that I can fininsh the booking
 
-  Scenario Outline: Customer pays for the room by a 3rd party service
-  Background:
-    Given a Customer has already logged in
-    And a booking with <orderId> was made by the Customer
-    When the booking made by the Customer is created
-    Then the customer can use <thirdPartyService> to pay
-
-    Examples:
-      | orderId | thirdPartyService |
-      | 3743    | 國泰世華          |
-      | 59243   | 台新銀行          |
+  Scenario: customer pays with bankwire
+    Given a hotelier
+    And a custoemr has already logged in
+    When the customer pays
+    And the hotelier confirmed the payment
+    Then the hotelier should mark the booking as 'paid'
