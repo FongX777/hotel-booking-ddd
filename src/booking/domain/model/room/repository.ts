@@ -1,4 +1,4 @@
-import { Room, RoomId } from '../../domain/model/room/room';
+import { Room, RoomId } from '../../../domain/model/room/room';
 
 export interface RoomRepository {
   nextId: () => RoomId;

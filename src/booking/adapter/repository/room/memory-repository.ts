@@ -1,7 +1,7 @@
 //import {RoomRepository} from '../../../usecase/room';
 import { Room, RoomId } from '../../../domain/model/room/room';
 import { generateV4 } from '../__utils/uuid';
-import { RoomRepository } from '../../../usecase/room/repository';
+import { RoomRepository } from '../../../domain/model/room/repository';
 
 export class MemoryRoomRepository implements RoomRepository {
   private rooms: Room[];

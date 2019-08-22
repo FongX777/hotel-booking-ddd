@@ -1,5 +1,5 @@
 import { Booking, BookingId, PaymentMethod, BookingStatus } from '../../domain/model/booking/booking';
-import { BookingRepository } from './repository';
+import { BookingRepository } from '../../domain/model/booking/repository';
 
 export class GetBookingUsecase {
   private readonly bookingRepo: BookingRepository;

@@ -1,5 +1,5 @@
 import { BookingId, Booking, PaymentMethod } from '../../domain/model/booking/booking';
-import { BookingRepository } from './repository';
+import { BookingRepository } from '../../domain/model/booking/repository';
 import { RoomId } from '../../domain/model/room/room';
 
 export class CreateBookingUsecase {

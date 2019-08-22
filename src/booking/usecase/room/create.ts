@@ -1,5 +1,5 @@
 import { RoomId, Room } from '../../domain/model/room/room';
-import { RoomRepository } from './repository';
+import { RoomRepository } from '../../domain/model/room/repository';
 
 export class CreateRoomUsecase {
   private roomRepo: RoomRepository;

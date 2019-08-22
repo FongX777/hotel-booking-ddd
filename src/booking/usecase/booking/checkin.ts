@@ -1,4 +1,4 @@
-import { BookingRepository } from './repository';
+import { BookingRepository } from '../../domain/model/booking/repository';
 import { BookingId } from '../../domain/model/booking/booking';
 
 export class CheckinBookingUsecase {
