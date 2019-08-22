@@ -1,7 +1,7 @@
 import { Customer, CustomerId } from '../customer';
 
-describe('customer register', function() {
-  it('should succeed', function() {
+describe('customer register', function () {
+  it('should succeed', function () {
     const props = {
       id: new CustomerId('1'),
       name: 'chi gun',
@@ -15,8 +15,8 @@ describe('customer register', function() {
   });
 });
 
-describe('update an customer profile', function() {
-  it('should succeed', function() {
+describe('update an customer profile', function () {
+  it('should succeed', function () {
     const customer = new Customer({
       id: new CustomerId('1'),
       name: 'chi gun',
