@@ -13,3 +13,4 @@ Feature: Customer Books a room
     And confirm the booking detail
     And choose the paymentMethod
     Then the room type should be booked by the customer
+    And the booking status should be 'UNPAID'
