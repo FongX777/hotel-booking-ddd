@@ -1,6 +1,6 @@
 import { Booking, BookingId, PaymentMethod, BookingStatus } from '../../domain/model/booking/booking';
 import { MemoryBookingRepository } from '../../adapter/repository/booking/memory-repository';
-import { BookingRepository } from './repository';
+import { BookingRepository } from '../../domain/model/booking/repository';
 
 export class EditBookingUsecase {
   private bookingRepo: BookingRepository;

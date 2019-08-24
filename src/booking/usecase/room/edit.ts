@@ -1,5 +1,5 @@
 import { Room, RoomId } from '../../domain/model/room/room';
-import { RoomRepository } from '../../usecase/room/repository';
+import { RoomRepository } from '../../domain/model/room/repository';
 
 export class EditRoomUsecase {
   constructor(private readonly roomRepo: RoomRepository) {

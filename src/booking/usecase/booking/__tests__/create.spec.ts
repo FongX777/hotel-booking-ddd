@@ -8,12 +8,18 @@ import {
   CreateRoomOutput,
   CreateRoomUsecase
 } from '../../room/index';
-import { MemoryBookingRepository } from '../../../adapter/repository/booking/memory-repository';
+//import { MemoryBookingRepository } from '../../../adapter/repository/booking/memory-repository';
+import { BookingRepository } from '../../../domain/model/booking/repository';
+import { repositoryTypes } from '../../../domain/model/booking/types';
+import { container } from '../../../domain/model/booking/inversify.config';
+
 import { MemoryRoomRepository } from '../../../adapter/repository/room/memory-repository';
 import { PaymentMethod } from '../../../domain/model/booking/booking';
 describe('Create a Booking', function () {
   //let booking_id:string;
   let room_id: string;
+
+  const bookingRepo = container.get<BookingRepository>(repositoryTypes.BookingRepository);//new MemoryBookingRepository();
   //create a room first
   beforeEach(async () => {
     const roomNo = '103A';
@@ -38,7 +44,6 @@ describe('Create a Booking', function () {
     const checkinDate = new Date(2018, 0, 4);
     const checkoutDate = new Date(2018, 0, 6);
     const paymentMethod = PaymentMethod.CREDITCARD;
-    const bookingRepo = new MemoryBookingRepository();
 
     const input: CreateBookingInput = { room_id, checkinDate, checkoutDate, paymentMethod };
     const output: CreateBookingOutput = {};

@@ -1,7 +1,9 @@
 import { Booking, BookingId } from '../../../domain/model/booking/booking';
 import { generateV4 } from '../__utils/uuid';
-import { BookingRepository } from '../../../usecase/booking/repository';
-
+import { BookingRepository } from '../../../domain/model/booking/repository';
+import { injectable } from "inversify";
+import "reflect-metadata";
+@injectable()
 export class MemoryBookingRepository implements BookingRepository {
 
   private bookings: Booking[];
