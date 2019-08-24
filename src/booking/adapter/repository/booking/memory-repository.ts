@@ -3,7 +3,6 @@ import { generateV4 } from '../__utils/uuid';
 import { BookingRepository } from '../../../domain/model/booking/repository';
 import { injectable } from "inversify";
 import "reflect-metadata";
-
 @injectable()
 export class MemoryBookingRepository implements BookingRepository {
 
