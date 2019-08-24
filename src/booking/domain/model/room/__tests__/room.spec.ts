@@ -1,7 +1,7 @@
 import { Room, RoomId } from '../room';
 
-describe('Room.create', function() {
-  it('success - normal case', function() {
+describe('Room.create', function () {
+  it('success - normal case', function () {
     const params = {
       id: new RoomId('111'),
       roomNo: '701',
@@ -25,7 +25,7 @@ describe('Room.create', function() {
     });
   });
 
-  it('success - test default', function() {
+  it('success - test default', function () {
     const params = {
       id: new RoomId('111'),
       roomNo: '701',
@@ -46,8 +46,8 @@ describe('Room.create', function() {
   });
 });
 
-describe('Room create then update', function() {
-  it('update data', function() {
+describe('Room create then update', function () {
+  it('update data', function () {
     const params = {
       id: new RoomId('111'),
       roomNo: '701',
