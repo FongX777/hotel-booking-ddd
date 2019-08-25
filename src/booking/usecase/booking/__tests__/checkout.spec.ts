@@ -22,7 +22,9 @@ import {
   CreateRoomOutput
 } from '../../room/index';
 import { PaymentMethod, BookingStatus } from '../../../domain/model/booking/booking';
+
 import { MemoryBookingRepository } from '../../../adapter/repository/booking/memory-repository';
+
 
 import { MemoryRoomRepository } from '../../../adapter/repository/room/memory-repository';
 

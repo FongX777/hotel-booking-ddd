@@ -1,6 +1,7 @@
 import { Booking, BookingId } from '../../../domain/model/booking/booking';
 import { generateV4 } from '../__utils/uuid';
 import { BookingRepository } from '../../../domain/model/booking/repository';
+
 export class MemoryBookingRepository implements BookingRepository {
 
   private bookings: Booking[];

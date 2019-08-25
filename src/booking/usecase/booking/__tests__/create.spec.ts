@@ -9,6 +9,7 @@ import {
   CreateRoomUsecase
 } from '../../room/index';
 import { MemoryBookingRepository } from '../../../adapter/repository/booking/memory-repository';
+
 import { MemoryRoomRepository } from '../../../adapter/repository/room/memory-repository';
 import { PaymentMethod } from '../../../domain/model/booking/booking';
 describe('Create a Booking', function () {
@@ -16,6 +17,7 @@ describe('Create a Booking', function () {
   let room_id: string;
 
   const bookingRepo = new MemoryBookingRepository();
+
   //create a room first
   beforeEach(async () => {
     const roomNo = '103A';
