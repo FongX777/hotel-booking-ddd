@@ -13,17 +13,13 @@ import {
   CreateRoomUsecase
 } from '../../room/index';
 import { PaymentMethod, BookingStatus } from '../../../domain/model/booking/booking';
-//import { MemoryBookingRepository } from '../../../adapter/repository/booking/memory-repository';
-import { BookingRepository } from '../../../domain/model/booking/repository';
-import { repositoryTypes } from '../../../domain/model/booking/types';
-import { container } from '../../../domain/model/booking/inversify.config';
+import { MemoryBookingRepository } from '../../../adapter/repository/booking/memory-repository';
 
 import { MemoryRoomRepository } from '../../../adapter/repository/room/memory-repository';
 describe('Get a Booking', function () {
   let booking_id: string;
   let room_id: string;
-  const bookingRepo = container.get<BookingRepository>(repositoryTypes.BookingRepository);
-  //const bookingRepo = new MemoryBookingRepository();
+  const bookingRepo = new MemoryBookingRepository();
   const roomRepo = new MemoryRoomRepository();
   //create a room first
   beforeEach(async () => {
