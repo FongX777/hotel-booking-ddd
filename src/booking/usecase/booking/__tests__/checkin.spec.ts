@@ -19,10 +19,7 @@ import {
   CreateRoomOutput
 } from '../../room/index';
 import { PaymentMethod, BookingStatus } from '../../../domain/model/booking/booking';
-//import { MemoryBookingRepository } from '../../../adapter/repository/booking/memory-repository';
-import { BookingRepository } from '../../../domain/model/booking/repository';
-import { repositoryTypes } from '../../../domain/model/booking/types';
-import { container } from '../../../domain/model/booking/inversify.config';
+import { MemoryBookingRepository } from '../../../adapter/repository/booking/memory-repository';
 
 import { MemoryRoomRepository } from '../../../adapter/repository/room/memory-repository';
 
@@ -30,7 +27,7 @@ describe('Checkin for booking', function () {
   let booking_id: string;
   let room_id: string;
   const roomRepo = new MemoryRoomRepository();
-  const bookingRepo = container.get<BookingRepository>(repositoryTypes.BookingRepository);//new MemoryBookingRepository();
+  const bookingRepo = new MemoryBookingRepository();
   // create a room first
   beforeEach(async () => {
     const roomNo = '103A';
