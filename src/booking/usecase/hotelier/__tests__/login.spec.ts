@@ -4,15 +4,15 @@ import {
   HotelierLoginOutput
 } from '../login';
 
-import { MemeryHotelierRepository } from '../../../adapter/repository/hotelier/memory-repository';
+//import { MemeryHotelierRepository } from '../../../adapter/repository/hotelier/memory-repository';
 import { Hotelier, HotelierId } from '../../../domain/model/hotelier/hotelier';
-
+import { container } from '../../../di-container/repository/hotelier/memory-repository';
 describe('Hotelier login use case', () => {
   it('should succedd', () => {
     const email = 'hotelier@test.com';
     const password = '123456';
 
-    const repo = new MemeryHotelierRepository();
+    const repo = container.resolve('memoryHotelierRepository');//new MemeryHotelierRepository();
     repo.hoteliers.push(
       new Hotelier({
         id: new HotelierId('xxxxx'),
