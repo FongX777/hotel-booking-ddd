@@ -23,7 +23,7 @@
     "@types/jasmine": "^3.4.0",
     "@types/jest": "^24.0.15",
     "@types/jsonwebtoken": "^8.3.2",
-    "@types/node": "^12.6.8",
+    "@types/node": "^14.10.2",
     "@typescript-eslint/eslint-plugin": "^1.11.0",
     "@typescript-eslint/parser": "^1.11.0",
     "barrelsby": "^2.1.1",
